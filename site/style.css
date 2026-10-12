@@ -23,14 +23,14 @@ nav{display:flex;flex-wrap:wrap;gap:6px 24px}nav a{color:#fff;text-decoration:no
 .photo{width:100%;border-radius:14px;display:block;object-fit:cover}.hero .photo{aspect-ratio:4/5}
 section{padding:80px 0}.alt{background:var(--mist)}.dark{background:var(--navy);color:#fff}.dark p{color:#D5DDF7}
 .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
-dl{margin:0}dt{font-weight:700;margin-top:18px}dd{margin:2px 0 0;color:var(--gray)}
+dl{margin:0 0 24px}dt{font-weight:700;margin-top:18px}dd{margin:2px 0 0;color:var(--gray)}
 .stats{display:flex;flex-wrap:wrap;gap:32px 64px;margin:28px 0}.stats b{display:block;font:800 4.2rem/1 'Bricolage Grotesque',sans-serif;color:var(--gol)}
 .stats span{color:#D5DDF7}
-.ages{list-style:none;padding:0;margin:20px 0}.ages li{display:flex;gap:20px;padding:14px 0;border-bottom:1px solid #D8D0BE}.ages b{min-width:120px;color:var(--blue)}
+.ages{list-style:none;padding:0;margin:20px 0}.ages li{display:flex;gap:20px;padding:14px 0;border-bottom:1px solid #D8D0BE}.ages b{flex:0 0 120px;color:var(--blue)}
 ol.steps{padding-left:1.2em}ol.steps li{margin-bottom:12px;padding-left:6px}
 .cols{display:grid;grid-template-columns:1fr 1fr;gap:48px}.cols h3{border-top:4px solid var(--blue);padding-top:14px}
 form{display:grid;gap:16px;max-width:620px}label{font-weight:700;display:grid;gap:6px}
-input,select,textarea{font:inherit;padding:12px;border-radius:6px;border:2px solid transparent;width:100%;background:#fff;color:var(--navy)}
+input,select,textarea{font:inherit;padding:12px;border-radius:6px;border:2px solid transparent;width:100%;background:#fff;color:var(--navy);font-weight:400}
 .fbtn{display:flex;flex-wrap:wrap;gap:12px}.msg{color:var(--gol);min-height:1.4em}
 .posts{list-style:none;padding:0;margin:0}.posts li{padding:20px 0;border-bottom:1px solid #D8D0BE}.posts a{font:700 1.3rem 'Bricolage Grotesque',sans-serif;text-decoration:none}.posts small{display:block;color:var(--gray)}
 article{padding:56px 0}article .wrap{max-width:760px}article p{max-width:none}article h2{font-size:1.6rem;margin-top:1.6em}
@@ -57,7 +57,7 @@ nav{width:100%;gap:2px 20px;padding-bottom:10px}nav a{white-space:nowrap;padding
 .hero .cta{flex-direction:column}.hero .cta .btn,#contato .fbtn .btn{width:100%;text-align:center}
 .split{gap:32px}.cols{gap:24px}.three{gap:20px}
 .stats{gap:24px 40px}.stats b{font-size:3rem}
-.ages li{gap:12px}.ages b{min-width:96px}
+.ages li{gap:12px}.ages b{flex-basis:96px}
 article{padding:40px 0}
 .fab{right:12px;bottom:12px;padding:12px 18px;font-size:.95rem}
 footer{padding-bottom:88px}
