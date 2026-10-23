@@ -11,7 +11,7 @@ p{margin:0 0 1em;max-width:62ch}a{color:var(--blue)}
 header{background:var(--navy);color:#fff}
 header .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px 32px;padding-top:14px;padding-bottom:14px}
 .brand{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font:800 1.8rem/1 'Bricolage Grotesque',sans-serif;letter-spacing:-.03em}
-.brand img{width:40px;height:40px}
+.brand img{width:auto;height:36px}
 nav{display:flex;flex-wrap:wrap;gap:6px 24px}nav a{color:#fff;text-decoration:none;font-weight:700;font-size:.95rem}nav a:hover{color:var(--gol)}
 .btn{display:inline-block;padding:14px 24px;border-radius:6px;font-weight:700;text-decoration:none;border:2px solid transparent;cursor:pointer;font-family:inherit;font-size:1rem;background:transparent;-webkit-appearance:none;appearance:none}
 .btn.gol{background:var(--gol);color:var(--navy)}.btn.line{border-color:var(--sky);color:#fff}.btn.blue{background:var(--blue);color:#fff}
@@ -50,7 +50,7 @@ details{border-bottom:1px solid #D8D0BE;padding:18px 0}summary{font:700 1.1rem '
 body{font-size:17px;overflow-wrap:break-word}
 .wrap{padding:0 20px}
 header .wrap{gap:10px 16px;padding-top:12px;padding-bottom:0}
-.brand{font-size:1.5rem}.brand img{width:34px;height:34px}
+.brand{font-size:1.5rem}.brand img{width:auto;height:30px}
 header .wa{display:none}
 nav{width:100%;gap:2px 20px;padding-bottom:10px}nav a{white-space:nowrap;padding:6px 0}
 .hero{padding:40px 0 48px}.hero .wrap{gap:32px}.hero p{font-size:1.1rem}
