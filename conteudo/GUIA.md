@@ -9,7 +9,8 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - Antes de criar algo, registre em `pautas.md` e confira o que já saiu, para não repetir tema nem palavra-chave principal.
 
 ## Fatos que podem ser usados (não invente outros)
-- A MM Sports é uma assessoria esportiva em condomínios de São Paulo, com foco no Morumbi, Panamby e Vila Andrade.
+- A MM Sports leva esporte para condomínios de São Paulo. O descritor oficial é "Esporte no condomínio" (não use "assessoria esportiva").
+- Fale em "São Paulo". Não restrinja a comunicação a bairros (pedido do Felipe). Citar um bairro como exemplo ou como palavra-chave de um artigo pontual é aceitável, mas não como a única área de atuação.
 - É conduzida por Matheus de Moraes, professor de Educação Física (bacharel e licenciado), com 10 anos de experiência em esporte educacional. É técnico desportivo na Prefeitura de Taboão da Serra desde 2020 e atuou nas categorias de base do Clube Atlético Taboão da Serra.
 - Atende o Misti Morumbi desde 2023, no modelo pay per use, com mais de 50 crianças por semana.
 - As aulas têm 1 hora, uma vez por semana, com até 15 alunos por turma, separadas por idade.
@@ -22,10 +23,10 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - Siga o formato dos artigos em `site/blog/` (cabeçalho, rodapé, JSON-LD `BlogPosting`, linha de autor e data, caixa de CTA no final).
 - Escreva de 700 a 1.100 palavras, com uma palavra-chave principal no título, na URL (slug sem acentos), na meta description (até 155 caracteres), no primeiro parágrafo e em um H2. Inclua uma seção de perguntas frequentes e de 2 a 3 links internos para outros artigos.
 - Atualize `site/blog/index.html` (novo artigo no topo), os 3 destaques "No blog" de `site/index.html` (os 3 mais recentes) e `site/sitemap.xml` (com `lastmod`).
-- Alterne públicos: síndicos e administradoras, famílias com crianças, adolescentes, idosos (60+), conselho e assembleia. Alterne também a intenção de busca: guia, checklist, comparação, dúvidas, bairro ("aulas de futsal em condomínio no Morumbi").
+- Alterne públicos: síndicos e administradoras, famílias com crianças, adolescentes, idosos (60+), conselho e assembleia. Alterne também a intenção de busca: guia, checklist, comparação, dúvidas, termos locais ("aulas de futsal em condomínio em São Paulo").
 
 ## Instagram e LinkedIn
-- **Instagram:** legenda curta (até cerca de 1.200 caracteres), gancho na primeira linha, quebras de linha, CTA "Link na bio" ou "Chame no WhatsApp pelo link da bio", e de 5 a 10 hashtags no fim (#condominio #sindico #morumbi #panamby #futsalinfantil #esporteinfantil ...).
+- **Instagram:** legenda curta (até cerca de 1.200 caracteres), gancho na primeira linha, quebras de linha, CTA "Link na bio" ou "Chame no WhatsApp pelo link da bio", e de 5 a 10 hashtags no fim (#esportenocondominio #condominio #sindico #futsalinfantil #esporteinfantil #saopaulo ...).
 - **LinkedIn (perfil pessoal do Matheus):** primeira pessoa, tom de professor e empreendedor, de 900 a 1.500 caracteres, gancho nas 2 primeiras linhas, parágrafos curtos, uma pergunta no final para gerar comentário, de 3 a 5 hashtags. No post de terça, coloque o link do artigo no texto.
 - Mesmo tema nos dois, com texto adaptado a cada rede.
 
