@@ -5,7 +5,7 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 ## Calendário
 - **Segunda:** a rotina roda. O artigo do blog vai ao ar no mesmo dia (PR com merge na main e conferência do deploy no Netlify).
 - **Terça, 8h (America/Sao_Paulo):** post 1, que divulga o artigo novo do blog.
-- **Quinta, 8h (America/Sao_Paulo):** post 2, com um tema diferente (dica, dado, bastidor, modalidade, idosos...).
+- **Quinta, 8h (America/Sao_Paulo):** post 2, com um tema diferente (dica, dado, bastidor, uma atividade diferente a cada vez, idosos...).
 - Antes de criar algo, registre em `pautas.md` e confira o que já saiu, para não repetir tema nem palavra-chave principal.
 
 ## Fatos que podem ser usados (não invente outros)
@@ -14,7 +14,8 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - É conduzida por Matheus de Moraes, professor de Educação Física (bacharel e licenciado), com 10 anos de experiência em esporte educacional. É técnico desportivo na Prefeitura de Taboão da Serra desde 2020 e atuou nas categorias de base do Clube Atlético Taboão da Serra.
 - Atende o Misti Morumbi desde 2023, no modelo pay per use, com mais de 50 crianças por semana.
 - As aulas têm 1 hora, uma vez por semana, com até 15 alunos por turma, separadas por idade.
-- Modalidades: futsal e futebol (4 a 12 anos), vôlei e basquete (12 a 17 anos), ginástica e vôlei adaptado (60 anos ou mais). Não citar psicomotricidade.
+- Atividades: a MM Sports oferece um leque amplo, não só esportes com bola. Exemplos: futsal, futebol, vôlei, basquete, ritmos e danças, pilates, lutas, ginástica, funcional e vôlei adaptado para 60+. As atividades são montadas conforme o condomínio e a procura. Não citar psicomotricidade.
+- **Não foque sempre nas mesmas modalidades** (pedido do Felipe). Ao citar atividades, varie e mostre a amplitude (danças, pilates, lutas etc.). Alterne o tema dos posts e artigos entre atividades diferentes. Sem inventar detalhes: não diga que uma modalidade "já acontece" em um condomínio sem confirmação. A turma do Misti Morumbi é de esporte com crianças.
 - Modelos de contratação: pay per use (as famílias pagam, sem custo para o condomínio), rateio (valor fixo na cota condominial) e pacote com mais de uma turma. **Nunca cite preços nem valores.**
 - Etapas: conversa com síndico e conselho, visita técnica, aula experimental e apresentação em assembleia.
 - Dado externo de referência: a OMS recomenda 60 minutos por dia de atividade moderada a vigorosa para quem tem de 5 a 17 anos, e 150 a 300 minutos por semana para adultos e idosos, com exercícios de equilíbrio e força.
@@ -23,10 +24,10 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - Siga o formato dos artigos em `site/blog/` (cabeçalho, rodapé, JSON-LD `BlogPosting`, linha de autor e data, caixa de CTA no final).
 - Escreva de 700 a 1.100 palavras, com uma palavra-chave principal no título, na URL (slug sem acentos), na meta description (até 155 caracteres), no primeiro parágrafo e em um H2. Inclua uma seção de perguntas frequentes e de 2 a 3 links internos para outros artigos.
 - Atualize `site/blog/index.html` (novo artigo no topo), os 3 destaques "No blog" de `site/index.html` (os 3 mais recentes) e `site/sitemap.xml` (com `lastmod`).
-- Alterne públicos: síndicos e administradoras, famílias com crianças, adolescentes, idosos (60+), conselho e assembleia. Alterne também a intenção de busca: guia, checklist, comparação, dúvidas, termos locais ("aulas de futsal em condomínio em São Paulo").
+- Alterne públicos: síndicos e administradoras, famílias com crianças, adolescentes, idosos (60+), conselho e assembleia. Alterne também a intenção de busca: guia, checklist, comparação, dúvidas, termos locais ("aulas de dança em condomínio em São Paulo", "pilates no condomínio", "aulas de luta para crianças no condomínio").
 
 ## Instagram e LinkedIn
-- **Instagram:** legenda curta (até cerca de 1.200 caracteres), gancho na primeira linha, quebras de linha, CTA "Link na bio" ou "Chame no WhatsApp pelo link da bio", e de 5 a 10 hashtags no fim (#esportenocondominio #condominio #sindico #futsalinfantil #esporteinfantil #saopaulo ...).
+- **Instagram:** legenda curta (até cerca de 1.200 caracteres), gancho na primeira linha, quebras de linha, CTA "Link na bio" ou "Chame no WhatsApp pelo link da bio", e de 5 a 10 hashtags no fim (#esportenocondominio #condominio #sindico #atividadefisica #qualidadedevida #saopaulo, mais hashtags da atividade do post ...).
 - **LinkedIn (perfil pessoal do Matheus):** primeira pessoa, tom de professor e empreendedor, de 900 a 1.500 caracteres, gancho nas 2 primeiras linhas, parágrafos curtos, uma pergunta no final para gerar comentário, de 3 a 5 hashtags. No post de terça, coloque o link do artigo no texto.
 - Mesmo tema nos dois, com texto adaptado a cada rede.
 
