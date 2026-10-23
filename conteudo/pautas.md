@@ -1,5 +1,7 @@
 # Pautas já publicadas
 
+Observação: até 23/10/2026 o conteúdo falou quase só de futsal, vôlei e basquete. Priorize agora outras atividades (danças, ritmos, pilates, lutas, funcional, atividades para 60+).
+
 Registre cada conteúdo aqui (data, canal, tema, palavra-chave) para não repetir.
 
 ## Blog
