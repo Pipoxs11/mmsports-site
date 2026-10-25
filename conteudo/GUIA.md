@@ -13,7 +13,7 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - Fale em "São Paulo". Não restrinja a comunicação a bairros (pedido do Felipe). Citar um bairro como exemplo ou como palavra-chave de um artigo pontual é aceitável, mas não como a única área de atuação.
 - É conduzida por Matheus de Moraes, professor de Educação Física (bacharel e licenciado), com 10 anos de experiência em esporte educacional. É técnico desportivo na Prefeitura de Taboão da Serra desde 2020 e atuou nas categorias de base do Clube Atlético Taboão da Serra.
 - Atende o Misti Morumbi desde 2023, no modelo pay per use, com mais de 50 crianças por semana.
-- As aulas têm 1 hora, uma vez por semana, com até 15 alunos por turma, separadas por idade.
+- Cada turma tem 2 horas de aula por semana, divididas em dois dias, com 15 a 20 alunos conforme modalidade, espaço e condições de segurança, separadas por idade.
 - Atividades: a MM Sports oferece um leque amplo, não só esportes com bola. Exemplos: futsal, futebol, vôlei, basquete, ritmos e danças, pilates, lutas, ginástica, funcional e vôlei adaptado para 60+. As atividades são montadas conforme o condomínio e a procura. Não citar psicomotricidade.
 - **Não foque sempre nas mesmas modalidades** (pedido do Felipe). Ao citar atividades, varie e mostre a amplitude (danças, pilates, lutas etc.). Alterne o tema dos posts e artigos entre atividades diferentes. Sem inventar detalhes: não diga que uma modalidade "já acontece" em um condomínio sem confirmação. A turma do Misti Morumbi é de esporte com crianças.
 - Modelos de contratação: pay per use (as famílias pagam, sem custo para o condomínio), rateio (valor fixo na cota condominial) e pacote com mais de uma turma. **Nunca cite preços nem valores.**
