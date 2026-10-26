@@ -1,0 +1,10 @@
+// Publicação no Cloudflare (Workers com arquivos estáticos).
+// Publica só a pasta `site`, igual ao netlify.toml.
+{
+  "name": "mmsports-site",
+  "compatibility_date": "2026-10-01",
+  "assets": {
+    "directory": "./site",
+    "not_found_handling": "404-page"
+  }
+}
