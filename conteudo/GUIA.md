@@ -1,6 +1,6 @@
 # Guia da rotina semanal de conteúdo da MM Sports
 
-Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artigo novo no blog e agenda 2 posts por semana no Instagram (@mmsports.me) e no LinkedIn do Matheus de Moraes, pelo Metricool. A pasta `conteudo/` não é publicada no site (o Netlify publica só `site/`).
+Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artigo novo no blog e agenda 2 posts por semana no Instagram (@mmsports.me) pelo Metricool. O LinkedIn ficou de fora (plano gratuito do Metricool). A pasta `conteudo/` não é publicada no site (o Netlify publica só `site/`).
 
 ## Calendário
 - **Segunda:** a rotina roda. O artigo do blog vai ao ar no mesmo dia (PR com merge na main e conferência do deploy no Netlify).
@@ -12,6 +12,7 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - A MM Sports leva esporte para condomínios de São Paulo. O descritor oficial é "Esporte no condomínio" (não use "assessoria esportiva").
 - Fale em "São Paulo". Não restrinja a comunicação a bairros (pedido do Felipe). Citar um bairro como exemplo ou como palavra-chave de um artigo pontual é aceitável, mas não como a única área de atuação.
 - É conduzida por Matheus de Moraes, professor de Educação Física (bacharel e licenciado), com 10 anos de experiência em esporte educacional. É técnico desportivo na Prefeitura de Taboão da Serra desde 2020 e atuou nas categorias de base do Clube Atlético Taboão da Serra.
+- **Não repita "formado em Educação Física"** (pedido do Felipe, 26/10/2026). Use no máximo uma vez por texto, e só quando a formação for o ponto. Prefira variações mais chamativas e alterne: "especialistas em esporte", "professores experientes", "equipe especializada", "profissionais qualificados", "professores com anos de quadra", "especialistas em esporte educacional", "time de professores apaixonados por esporte". Na assinatura dos artigos use "Por Matheus de Moraes, especialista em esporte educacional".
 - Atende o Misti Morumbi desde 2023, no modelo pay per use, com mais de 50 crianças por semana.
 - Cada turma tem 2 horas de aula por semana, divididas em dois dias, com 15 a 20 alunos conforme modalidade, espaço e condições de segurança, separadas por idade.
 - Atividades: a MM Sports oferece um leque amplo, não só esportes com bola. Exemplos: futsal, futebol, vôlei, basquete, ritmos e danças, pilates, lutas, ginástica, funcional e vôlei adaptado para 60+. As atividades são montadas conforme o condomínio e a procura. Não citar psicomotricidade.
