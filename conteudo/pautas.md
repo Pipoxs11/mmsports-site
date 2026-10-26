@@ -11,6 +11,8 @@ Registre cada conteúdo aqui (data, canal, tema, palavra-chave) para não repeti
 - 2026-10-09: O que perguntar antes de contratar aulas esportivas (checklist do síndico). Reescrito em 2026-10-22.
 - 2026-10-09: Quadra parada no condomínio, 5 formas de dar vida ao espaço. Reescrito em 2026-10-22.
 
+- 2026-10-26: Aulas de luta para crianças no condomínio (benefícios, segurança, espaço). Palavra-chave: "aulas de luta para crianças no condomínio".
+
 ## Redes sociais
 - 2026-10-25 (Instagram): carrossel de apresentação refeito (fotos inteiras, sem cortar as crianças) e legenda focada em esportes coletivos, lutas, danças e ginástica.
 - 2026-10-23 (Instagram): carrossel de apresentação da MM Sports (4 slides: proposta, como funciona, modalidades, Misti Morumbi).
