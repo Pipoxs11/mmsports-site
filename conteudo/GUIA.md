@@ -32,6 +32,7 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - **LinkedIn (perfil pessoal do Matheus):** primeira pessoa, tom de professor e empreendedor, de 900 a 1.500 caracteres, gancho nas 2 primeiras linhas, parágrafos curtos, uma pergunta no final para gerar comentário, de 3 a 5 hashtags. No post de terça, coloque o link do artigo no texto.
 - Mesmo tema nos dois, com texto adaptado a cada rede.
 - **Fotos sem repetição (regra do Felipe, 28/10/2026):** nunca use a mesma foto no perfil do Matheus e na página da MM Sports no LinkedIn, e evite repetir foto no mesmo perfil. Antes de agendar, confira no Buffer (`list_posts`) quais fotos já saíram ou estão na fila. Use o banco de fotos em `/mnt/project-files/fotos/` (catálogo no README de lá). A foto precisa de URL pública: copie para `site/social/fotos/` no PR e use `https://mmsports.me/social/fotos/<arquivo>.jpg` depois do deploy. Só use foto de criança com autorização dos responsáveis.
+- **Onepages em vez de fotos soltas (regra do Felipe, 28/10/2026):** não poste mais foto solta. Posts com imagem usam uma onepage visual sem preços (modelos e legendas em `/mnt/project-files/onepages/`), variando entre onepage com foto real, só texto, ou imagem ilustrativa gerada e atrativa. Cada arte vai para um canal só, sem repetir a mesma arte em canais diferentes em datas próximas.
 
 ## Arte
 - Uma arte por post, gerada com `NODE_PATH=$(npm root -g) node conteudo/render.js conteudo/posts/AAAA-MM-DD.json site/social/AAAA-MM-DD.jpg`.
