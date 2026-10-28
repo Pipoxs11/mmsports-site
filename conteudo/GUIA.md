@@ -1,9 +1,9 @@
 # Guia da rotina semanal de conteúdo da MM Sports
 
-Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artigo novo no blog e agenda 2 posts por semana no Instagram (@mmsports.me) pelo Metricool. O LinkedIn ficou de fora (plano gratuito do Metricool). A pasta `conteudo/` não é publicada no site (o Netlify publica só `site/`).
+Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artigo novo no blog e agenda 2 posts por semana no Instagram (@mmsports.me) pelo Metricool. O LinkedIn ficou de fora (plano gratuito do Metricool). A pasta `conteudo/` não é publicada no site (o Cloudflare publica só `site/`).
 
 ## Calendário
-- **Segunda:** a rotina roda. O artigo do blog vai ao ar no mesmo dia (PR com merge na main e conferência do deploy no Netlify).
+- **Segunda:** a rotina roda. O artigo do blog vai ao ar no mesmo dia (PR com merge na main e conferência do deploy no Cloudflare: check "Workers Builds: mmsports-site" do commit na main. Os checks do Cloudflare que falham dentro do PR são só previews).
 - **Terça, 8h (America/Sao_Paulo):** post 1, que divulga o artigo novo do blog.
 - **Quinta, 8h (America/Sao_Paulo):** post 2, com um tema diferente (dica, dado, bastidor, uma atividade diferente a cada vez, idosos...).
 - Antes de criar algo, registre em `pautas.md` e confira o que já saiu, para não repetir tema nem palavra-chave principal.
@@ -39,9 +39,7 @@ Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artig
 - Varie o formato: com foto real, só texto (frase, mito ou verdade, checklist, enquete) e com ilustração (gráfico, ícones, número grande). Não repita o mesmo formato em posts seguidos.
 - Gerador das onepages: `NODE_PATH=$(npm root -g) node conteudo/onepages.js` (gera tudo em `site/social/onepages/`; passe a pasta e os nomes para gerar só algumas). Para uma arte nova, acrescente uma entrada em `pages` seguindo os modelos que já existem. URL pública depois do deploy: `https://mmsports.me/social/onepages/<nome>.jpg`.
 - Cada onepage vai para um canal só. Registre em `/mnt/project-files/onepages/legendas.md` onde e quando cada uma saiu.
-- Uma arte por post, gerada com `NODE_PATH=$(npm root -g) node conteudo/render.js conteudo/posts/AAAA-MM-DD.json site/social/AAAA-MM-DD.jpg`.
-- JSON: `kicker` (ex.: "Para síndicos", "Novo no blog", "Para famílias", "60+"), `titulo` (até cerca de 60 caracteres), `texto` (1 a 2 frases), `foto` (opcional: `turma.jpg`, `aula.jpg`, `hero.jpg`, `matheus.jpg` de `site/images/`) e `tema` (`navy`, `gol` ou `paper`). Alterne os temas e abra a imagem para conferir antes de publicar.
-- A arte vai no mesmo PR do artigo. Depois do deploy, a URL pública é `https://mmsports.me/social/AAAA-MM-DD.jpg`, que é a que vai para o Metricool.
+- A arte vai no mesmo PR do artigo. Depois do deploy, a URL pública da onepage é a que vai para o Metricool.
 
 ## Metricool
 - Marca (blogId) 7617134, fuso America/Sao_Paulo. Confira em `getBrandSettings` quais redes estão conectadas e agende só nelas. Se o LinkedIn ainda não estiver conectado, publique só no Instagram e avise no resumo.
