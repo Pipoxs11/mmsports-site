@@ -12,9 +12,12 @@ Registre cada conteúdo aqui (data, canal, tema, palavra-chave) para não repeti
 - 2026-10-09: Quadra parada no condomínio, 5 formas de dar vida ao espaço. Reescrito em 2026-10-22.
 
 - 2026-10-26: Aulas de luta para crianças no condomínio (benefícios, segurança, espaço). Palavra-chave: "aulas de luta para crianças no condomínio".
+- 2026-11-02: Atividade física para idosos no condomínio (OMS, modalidades 60+, segurança, como montar a turma). Palavra-chave: "atividade física para idosos no condomínio".
 
 ## Redes sociais
 - 2026-10-25 (Instagram): carrossel de apresentação refeito (fotos inteiras, sem cortar as crianças) e legenda focada em esportes coletivos, lutas, danças e ginástica.
 - 2026-10-23 (Instagram): carrossel de apresentação da MM Sports (4 slides: proposta, como funciona, modalidades, Misti Morumbi).
 - 2026-10-27 (Instagram): quadra parada no condomínio, divulga o artigo das 5 formas de usar a quadra.
 - 2026-10-29 (Instagram): recomendação da OMS de 60 minutos por dia para crianças e a aula no condomínio como hábito.
+- 2026-11-03 (Instagram): divulga o artigo de atividade física para idosos no condomínio. Onepage com foto real: 13-idosos-no-condominio (alongamento em colchonetes).
+- 2026-11-05 (Instagram): mito ou verdade sobre esporte no condomínio (espaço, quem paga, não é só para crianças, rotina sem trânsito). Onepage só texto: 10-mito-ou-verdade.
