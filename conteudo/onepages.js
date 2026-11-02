@@ -297,6 +297,35 @@ h1 em{font-style:normal;color:${C.tinta}}
 <div class="p">Comente só o número. Faltou alguma? Conta pra gente.</div>
 `, logoNeg),
 
+  // 13. Foto real: atividade física para idosos no condomínio (Instagram, 03/11/2026, divulga o artigo do blog)
+  '13-idosos-no-condominio': base(C.creme, C.tinta, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:82px;line-height:.98;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.cobalto}}
+.row{display:flex;gap:40px;padding:48px 80px 0}
+.row .ph{flex:none;width:360px}
+.col{flex:1;display:flex;flex-direction:column;gap:22px}
+.oms{background:${C.tinta};color:${C.creme};border-radius:26px;padding:26px 30px}
+.oms .num{font-size:72px;font-weight:800;line-height:.95;color:${C.laranja}}
+.oms span{display:block;font-size:25px;line-height:1.3;margin-top:10px;font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:12px}
+.t{font:800 30px 'Bricolage Grotesque';letter-spacing:-.02em;padding:10px 22px;border-radius:999px;border:3px solid ${C.tinta}}
+.t.o{background:${C.laranja};border-color:${C.laranja};color:${C.creme}}
+.t.c{background:${C.cobalto};border-color:${C.cobalto};color:${C.creme}}
+.col p{font-size:27px;line-height:1.35;font-weight:500}
+.blog{position:absolute;left:80px;right:80px;bottom:150px;font-size:30px;font-weight:800;color:${C.cobalto}}
+</style>
+<div class="top"><div class="k" style="color:${C.cobalto}">60+ no condomínio</div>
+<h1>Força e equilíbrio <em>pertinho de casa</em>.</h1></div>
+<div class="row">${box(foto('60-mais/alongamento-colchonetes-vertical.jpg'), 760)}
+<div class="col">
+ <div class="oms"><div class="num">150 a 300</div><span>minutos por semana de atividade moderada é o que a OMS recomenda para quem tem 60+</span></div>
+ <div class="tags"><span class="t o">Ginástica</span><span class="t">Alongamento</span><span class="t c">Pilates</span><span class="t">Vôlei adaptado</span><span class="t o">Danças</span><span class="t">Funcional</span></div>
+ <p>Turma separada por idade, com professores experientes e aula no ritmo de cada aluno.</p>
+</div></div>
+<div class="blog">Novo no blog: o guia completo. Link na bio.</div>
+`, logoCor),
 };
 
 (async () => {
