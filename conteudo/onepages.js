@@ -326,6 +326,48 @@ h1 em{font-style:normal;color:${C.cobalto}}
 </div></div>
 <div class="blog">Novo no blog: o guia completo. Link na bio.</div>
 `, logoCor),
+  // 14. Foto real: vôlei para adolescentes (Instagram)
+  '14-volei-adolescentes': base(C.tinta, C.creme, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:86px;line-height:.98;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.laranja}}
+.ph{margin:48px 80px 0}
+.tags{display:flex;flex-wrap:wrap;gap:14px;padding:40px 80px 0}
+.t{font:800 32px 'Bricolage Grotesque';letter-spacing:-.02em;padding:12px 26px;border-radius:999px;border:3px solid ${C.creme}}
+.t.o{background:${C.laranja};border-color:${C.laranja}}
+.t.c{background:${C.cobalto};border-color:${C.cobalto}}
+p.s{padding:34px 80px 0;font-size:31px;line-height:1.35;font-weight:500;opacity:.92}
+</style>
+<div class="top"><div class="k" style="color:${C.laranja}">Vôlei · 12 a 17 anos</div>
+<h1>Time de vôlei <em>dentro do condomínio</em>.</h1></div>
+${box(foto('volei/volei-12a17-turma-com-bola-horizontal.jpg'), 500)}
+<div class="tags"><span class="t o">Trabalho em equipe</span><span class="t">Coordenação</span><span class="t c">Confiança</span><span class="t">Amizades</span></div>
+<p class="s">Turmas por idade e nível, com professores experientes e treino de verdade, perto de casa.</p>
+`, logoNeg),
+
+  // 15. Foto real: bastidores do treino de vôlei (LinkedIn, foto diferente da 14)
+  '15-volei-bastidores': base(C.creme, C.tinta, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:82px;line-height:.98;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.cobalto}}
+.ph{margin:48px 80px 0}
+.steps{padding:40px 80px 0;display:flex;flex-direction:column;gap:22px}
+.st{display:flex;gap:26px;align-items:center}
+.n{flex:none;width:62px;height:62px;border-radius:50%;background:${C.laranja};color:${C.creme};font:800 32px 'Bricolage Grotesque';display:flex;align-items:center;justify-content:center}
+.st:nth-child(2) .n{background:${C.cobalto}}.st:nth-child(3) .n{background:${C.tinta}}
+.st span{font-size:32px;line-height:1.25;font-weight:600}
+</style>
+<div class="top"><div class="k" style="color:${C.cobalto}">Bastidores do vôlei</div>
+<h1>A conversa também <em>faz parte do treino</em>.</h1></div>
+${box(foto('volei/volei-12a17-conversa-tecnica-horizontal.jpg'), 500)}
+<div class="steps">
+ <div class="st"><div class="n">1</div><span>Fundamento explicado em poucas palavras</span></div>
+ <div class="st"><div class="n">2</div><span>Muita repetição com bola</span></div>
+ <div class="st"><div class="n">3</div><span>Jogo e conversa sobre o que deu certo</span></div>
+</div>
+`, logoCor),
 };
 
 (async () => {
