@@ -368,6 +368,37 @@ ${box(foto('volei/volei-12a17-conversa-tecnica-horizontal.jpg'), 500)}
  <div class="st"><div class="n">3</div><span>Jogo e conversa sobre o que deu certo</span></div>
 </div>
 `, logoCor),
+  // 16. Ilustração: danças e ritmos (Instagram, 12/11/2026)
+  '16-dancas-e-ritmos': base(C.laranja, C.tinta, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:92px;line-height:.96;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.creme}}
+.il{display:flex;justify-content:center;margin-top:34px}
+.list{display:grid;grid-template-columns:1fr 1fr;gap:18px 34px;padding:30px 80px 0}
+.it{border-top:4px solid ${C.tinta};padding-top:14px}
+.it b{display:block;font-size:38px;font-weight:800;line-height:1.08}
+.it span{display:block;font-size:26px;line-height:1.3;margin-top:6px;font-weight:500}
+.p{padding:30px 80px 0;font-size:28px;line-height:1.35;font-weight:700}
+</style>
+<div class="top"><div class="k" style="color:${C.creme}">Danças e ritmos no condomínio</div>
+<h1>Dançar também é <em>treino</em>.</h1></div>
+<div class="il"><svg width="920" height="400" viewBox="0 0 920 400">
+ <rect width="920" height="400" rx="32" fill="${C.tinta}"/>
+ ${Array.from({ length: 23 }, (_, i) => { let h = 30 + 110 * Math.abs(Math.sin(i * 0.62)) + 30 * Math.abs(Math.cos(i * 1.7)); if ((i > 3 && i < 8) || (i > 16 && i < 21)) h = Math.min(h, 110); const x = 60 + i * 36; return `<rect x="${x}" y="${300 - h}" width="22" height="${h}" rx="11" fill="${i % 5 === 2 ? C.laranja : i % 3 === 0 ? C.cobalto : C.creme}" fill-opacity="${i % 5 === 2 ? 1 : .9}"/>`; }).join('')}
+ <line x1="50" y1="318" x2="870" y2="318" stroke="${C.creme}" stroke-opacity=".25" stroke-width="4" stroke-linecap="round"/>
+ <g fill="${C.laranja}"><ellipse cx="700" cy="96" rx="26" ry="20" transform="rotate(-20 700 96)"/><rect x="719" y="20" width="9" height="78" rx="4"/><path d="M724 20 q40 10 34 52 q-8 -26 -34 -24z"/></g>
+ <g fill="${C.creme}"><ellipse cx="170" cy="120" rx="22" ry="17" transform="rotate(-20 170 120)"/><ellipse cx="250" cy="100" rx="22" ry="17" transform="rotate(-20 250 100)"/><rect x="186" y="50" width="8" height="72" rx="4"/><rect x="266" y="30" width="8" height="72" rx="4"/><path d="M186 50 l88 -20 v16 l-88 20z"/></g>
+ <text x="460" y="370" text-anchor="middle" font-family="Figtree" font-weight="800" font-size="26" letter-spacing="6" fill="${C.creme}" fill-opacity=".7">RITMO · MÚSICA · MOVIMENTO</text>
+</svg></div>
+<div class="list">
+ <div class="it"><b>Coordenação</b><span>Corpo e música no mesmo tempo.</span></div>
+ <div class="it"><b>Fôlego</b><span>Aula animada que cansa sem parecer treino.</span></div>
+ <div class="it"><b>Memória</b><span>Sequências que desafiam a cabeça.</span></div>
+ <div class="it"><b>Alegria</b><span>Porta de entrada para quem não curte bola.</span></div>
+</div>
+<div class="p">Para crianças, adolescentes, adultos e 60+, com turmas separadas por idade.</div>
+`, logoUma),
 };
 
 (async () => {
