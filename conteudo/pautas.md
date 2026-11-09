@@ -24,3 +24,4 @@ Registre cada conteúdo aqui (data, canal, tema, palavra-chave) para não repeti
 - 2026-11-05 (Instagram): mito ou verdade sobre esporte no condomínio (espaço, quem paga, não é só para crianças, rotina sem trânsito). Onepage só texto: 10-mito-ou-verdade.
 - 2026-11-10 (Instagram): divulga o artigo de esporte para adolescentes no condomínio. Onepage com foto real: 14-volei-adolescentes (turma de vôlei 12 a 17).
 - 2026-11-12 (Instagram): danças e ritmos como treino para todas as idades. Onepage com ilustração: 16-dancas-e-ritmos.
+- 2026-11-09 (Instagram, carrossel + LinkedIn Matheus e página): torneio de futsal infantil no Clube Paineiras do Morumby (domingo 08/11). Artes em site/social/torneio-paineiras/, fotos reais de fotos/torneio-paineiras/.
