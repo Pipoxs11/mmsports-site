@@ -203,6 +203,85 @@ const CARROSSEIS = {
       'Autorização dos responsáveis para cada criança' ] },
     { tipo: 'fim', kicker: 'Resumo', titulo: 'Férias organizadas viram <em>lembrança</em> boa.', sub: 'A MM Sports monta atividades orientadas conforme o perfil e o espaço de cada condomínio.', cta: 'Conheça a MM Sports: mmsports.me' },
   ],
+  'orcamento-2027': [
+    { tipo: 'capa', kicker: 'Fim de ano no condomínio', titulo: 'A área de lazer no <em>orçamento</em> de 2027', sub: 'Novembro e dezembro são meses de previsão orçamentária e assembleia. Como incluir aulas esportivas sem susto na cota.' },
+    { tipo: 'texto', kicker: 'Por que agora', titulo: 'O que fica fora agora <em>espera</em> um ano', paragrafos: [
+      'É no fim do ano que o condomínio define as despesas e as prioridades do ano seguinte.',
+      'Se os moradores já pedem aulas para as crianças, para os adultos ou para o 60+, <b>este é o momento de levar a pauta</b>.' ] },
+    { tipo: 'modelo', kicker: 'Três caminhos', titulo: 'Nem sempre entra na <em>cota</em>', cards: [
+      { selo: 'Pay per use', texto: 'As famílias inscrevem os alunos e pagam direto. O condomínio cede o espaço e não tem despesa nova.' },
+      { selo: 'Rateio', texto: 'Um valor fixo previsto no orçamento, com aulas abertas a todos os moradores.' },
+      { selo: 'Pacote', texto: 'Mais de uma turma, para públicos diferentes, também prevista no orçamento.' } ] },
+    { tipo: 'lista', kicker: 'Para a assembleia', titulo: 'O que levar por <em>escrito</em>', itens: [
+      '<b>Pesquisa rápida</b> com idades, interesses e horários livres dos moradores.',
+      '<b>Proposta</b> com turmas, dias, horários e modelo de contratação.',
+      '<b>Regras de uso</b> da quadra para o horário de aula e o jogo livre.',
+      '<b>Data da aula experimental,</b> para os moradores verem antes de decidir.' ] },
+    { tipo: 'texto', kicker: 'Cuidado', titulo: 'Três erros de <em>fim de ano</em>', paragrafos: [
+      '<b>Votar despesa nova em "assuntos gerais".</b> Ela precisa estar no edital.',
+      '<b>Prever valor sem proposta.</b> Sem turmas e horários definidos, a conta não fecha.',
+      '<b>Deixar para março.</b> As famílias planejam o ano em dezembro e janeiro.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'Quem planeja em novembro começa o ano com a <em>quadra</em> cheia.', sub: 'A MM Sports prepara a proposta por escrito para o conselho, no modelo que fizer sentido para o condomínio.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'novembro-azul': [
+    { tipo: 'capa', kicker: 'Novembro Azul', titulo: 'Cuidar da saúde também é ir para a <em>quadra</em>', sub: 'O mês da saúde do homem é um bom lembrete: atividade física regular faz parte do cuidado, junto com o check-up.' },
+    { tipo: 'texto', kicker: 'A referência', titulo: 'Quanto um adulto <em>precisa</em>', paragrafos: [
+      'A OMS recomenda <b>150 a 300 minutos por semana</b> de atividade física moderada para adultos, com exercícios de força.',
+      'Na prática, muitos não chegam lá. Falta tempo, sobra trânsito e a academia fica longe de casa.' ] },
+    { tipo: 'lista', kicker: 'No condomínio', titulo: 'Por que <em>funciona</em>', itens: [
+      '<b>Sem trânsito:</b> a aula fica a um elevador de distância.',
+      '<b>No horário de quem trabalha:</b> turmas no começo da manhã ou à noite.',
+      '<b>Turma de vizinhos:</b> o grupo sente a falta de quem não vai, e isso ajuda a manter a rotina.',
+      '<b>Atividade variada:</b> dá para escolher o que combina com cada um.' ] },
+    { tipo: 'modelo', kicker: 'Opções para adultos', titulo: 'Não é só <em>futebol</em>', cards: [
+      { selo: 'Funcional', texto: 'Força e condicionamento com pouco material, em qualquer espaço.' },
+      { selo: 'Lutas e ritmos', texto: 'Gasto de energia, coordenação e diversão.' },
+      { selo: 'Esportes coletivos', texto: 'Futsal, vôlei e basquete com turma de vizinhos.' } ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'A quadra não é só das <em>crianças</em>.', sub: 'A MM Sports monta turmas de adultos no horário de quem trabalha, conforme a procura dos moradores.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'dia-do-sindico': [
+    { tipo: 'capa', kicker: '30 de novembro, Dia do Síndico', titulo: 'Área de lazer que dá menos <em>trabalho</em>', sub: '5 combinados que tiram do síndico o dia a dia das atividades esportivas do condomínio.' },
+    { tipo: 'texto', kicker: 'Uma homenagem', titulo: 'Quem cuida do <em>condomínio</em>', paragrafos: [
+      'O síndico resolve vazamento, cobrança e barulho, e ainda ouve o pedido de aula para as crianças.',
+      'Neste Dia do Síndico, a nossa homenagem vem em forma de <b>lista prática</b>.' ] },
+    { tipo: 'lista', kicker: 'Gestão', titulo: 'Menos coisa na sua <em>mão</em>', itens: [
+      '<b>Um responsável pelas aulas:</b> horários, professores e material ficam com quem dá a aula.',
+      '<b>Grade publicada:</b> no mural e no app, para ninguém perguntar ao síndico qual é o horário.',
+      '<b>Inscrição direta com as famílias:</b> no pay per use, o condomínio não cobra nem controla pagamento.' ] },
+    { tipo: 'lista', kicker: 'Acompanhamento', titulo: 'Informação sem <em>esforço</em>', inicio: 4, itens: [
+      '<b>Frequência por escrito:</b> o síndico sabe quantos moradores usam as aulas sem precisar contar.',
+      '<b>Um canal só para sugestões:</b> por escrito, fora do grupo de WhatsApp.' ] },
+    { tipo: 'fim', kicker: 'Feliz Dia do Síndico', titulo: 'Obrigado a quem cuida do <em>condomínio</em> todos os dias.', sub: 'A MM Sports cuida das aulas para o síndico cuidar do resto.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'aulas-no-calor': [
+    { tipo: 'capa', kicker: 'Verão em São Paulo', titulo: 'Aula no <em>calor</em>, sem risco', sub: 'Como ajustar horários e cuidados quando a quadra esquenta.' },
+    { tipo: 'lista', kicker: 'Horário', titulo: 'Fugir do sol <em>forte</em>', itens: [
+      '<b>Evitar a quadra descoberta</b> entre 10h e 16h nos dias mais quentes.',
+      '<b>Preferir</b> o começo da manhã e o fim da tarde.',
+      '<b>Ter um plano B</b> em área coberta: salão, garagem livre ou espaço com sombra.' ] },
+    { tipo: 'lista', kicker: 'Durante a aula', titulo: 'Cuidados que não <em>faltam</em>', itens: [
+      '<b>Água</b> antes, durante e depois, com pausas programadas.',
+      '<b>Intensidade ajustada:</b> em dia quente, o treino fica mais leve.',
+      '<b>Boné, roupa leve e protetor solar.</b>' ] },
+    { tipo: 'texto', kicker: 'Sinais de alerta', titulo: 'Hora de <em>parar</em>', paragrafos: [
+      'Tontura, dor de cabeça, enjoo ou pele muito vermelha: o aluno para, vai para a sombra, se hidrata e o responsável é avisado.',
+      '<b>Crianças pequenas e 60+</b> sentem mais o calor e pedem atenção redobrada.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'No verão, a aula <em>muda</em>. Não para.', sub: 'Os professores da MM Sports ajustam horários, intensidade e pausas conforme o clima e a idade da turma.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'balanco-do-ano': [
+    { tipo: 'capa', kicker: 'Balanço de fim de ano', titulo: 'Sua área de lazer <em>funcionou</em> em 2026?', sub: '5 sinais para avaliar antes de planejar o próximo ano.' },
+    { tipo: 'lista', kicker: 'Uso', titulo: 'A quadra foi <em>usada</em>?', itens: [
+      '<b>Ocupação:</b> os espaços ficam cheios nos horários de aula e de jogo livre?',
+      '<b>Frequência:</b> os alunos voltam toda semana ou somem depois do primeiro mês?',
+      '<b>Variedade:</b> há turmas para mais de uma idade, ou só para um grupo?' ] },
+    { tipo: 'lista', kicker: 'Convivência', titulo: 'O clima <em>melhorou</em>?', inicio: 4, itens: [
+      '<b>Reclamações:</b> diminuíram as queixas de barulho e de disputa por espaço?',
+      '<b>Procura:</b> os moradores pedem mais turmas, horários ou atividades?' ] },
+    { tipo: 'texto', kicker: 'Como medir', titulo: 'Sem planilha <em>complicada</em>', paragrafos: [
+      'Lista de presença das aulas, registro das reclamações do ano e uma pesquisa curta com as famílias.',
+      'Com isso em mãos, a conversa sobre 2027 vira <b>dado, não opinião</b>.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'O que não se mede não <em>melhora</em>.', sub: 'A MM Sports ajuda o condomínio a montar a grade de 2027 a partir do que funcionou neste ano.', cta: 'Fale com a gente: mmsports.me' },
+  ],
 };
 
 (async () => {
