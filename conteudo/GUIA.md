@@ -1,11 +1,19 @@
 # Guia da rotina semanal de conteúdo da MM Sports
 
-Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artigo novo no blog e agenda 2 posts por semana no Instagram (@mmsports.me) pelo Metricool. O LinkedIn ficou de fora (plano gratuito do Metricool). A pasta `conteudo/` não é publicada no site (o Cloudflare publica só `site/`).
+Este arquivo orienta a tarefa agendada que, toda segunda-feira, publica um artigo novo no blog e agenda 3 posts por semana no Instagram (@mmsports.me) pelo Metricool. O LinkedIn (perfil do Matheus e página) é agendado pelo Buffer na revisão semanal de sexta. A pasta `conteudo/` não é publicada no site (o Cloudflare publica só `site/`).
 
 ## Calendário
 - **Segunda:** a rotina roda. O artigo do blog vai ao ar no mesmo dia (PR com merge na main e conferência do deploy no Cloudflare: check "Workers Builds: mmsports-site" do commit na main. Os checks do Cloudflare que falham dentro do PR são só previews).
 - **Terça, 8h (America/Sao_Paulo):** post 1, que divulga o artigo novo do blog.
 - **Quinta, 8h (America/Sao_Paulo):** post 2, com um tema diferente (dica, dado, bastidor, uma atividade diferente a cada vez, idosos...).
+- **Sábado, 9h (America/Sao_Paulo):** post 3, para as famílias no fim de semana (bastidor real, atividade para fazer em família, tema quente da época).
+
+## Cadência por canal (Felipe, 12/11/2026: sem data de fim, +1 dia por canal)
+- **Instagram:** terça e quinta às 8h e sábado às 9h (Metricool, rotina de segunda).
+- **LinkedIn Matheus:** terça, quarta e quinta às 8h (Buffer, revisão de sexta). No máximo 1 onepage por semana; o resto em texto puro.
+- **LinkedIn página:** segunda, quarta e sexta às 12h (Buffer, revisão de sexta). Carrosséis em PDF (`conteudo/carrosseis.js`).
+- **Blog:** 1 artigo por semana, na segunda.
+- Use temas quentes da época para síndicos e moradores (previsão orçamentária e assembleias de fim de ano, Dia do Síndico em 30/11, Novembro Azul, férias e calor no verão, volta às aulas, planejamento do ano) e os aprendizados do report de sexta.
 - Antes de criar algo, registre em `pautas.md` e confira o que já saiu, para não repetir tema nem palavra-chave principal.
 
 ## Fatos que podem ser usados (não invente outros)
