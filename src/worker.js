@@ -98,7 +98,7 @@ export default {
       if (d && d.site) return json({ ok: true }); // campo-isca contra robôs
       const r = limpar(d);
       if (!r.faixas.length) return json({ erro: "Escolha ao menos uma faixa etária." }, 400);
-      // Uma resposta por celular/navegador: cookie do servidor + id guardado no
+      // Uma resposta por aparelho (celular ou computador): cookie do servidor + id guardado no
       // navegador. Por IP não dá: redes móveis e o Wi-Fi do condomínio fazem
       // vários vizinhos aparecerem com o mesmo IP.
       const nomeCookie = "mm_" + slug.replace(/-/g, "_");
@@ -108,7 +108,7 @@ export default {
       delete r.dispositivo;
       // Só um resumo do IP, para o painel apontar respostas da mesma conexão.
       r.ip = (await sha256(slug + (request.headers.get("cf-connecting-ip") || ""))).slice(0, 12);
-      const repetido = { erro: "Este celular já respondeu.", codigo: "repetido" };
+      const repetido = { erro: "Este aparelho já respondeu.", codigo: "repetido" };
       if (!(await stub.salvar(ids.length ? ids : [id], r))) return json(repetido, 409);
       return json({ ok: true }, 200, {
         "set-cookie": nomeCookie + "=" + id + "; Max-Age=31536000; Path=/; Secure; HttpOnly; SameSite=Lax",
@@ -135,13 +135,13 @@ export class Interesse extends DurableObject {
     ctx.storage.sql.exec(
       "CREATE TABLE IF NOT EXISTS respostas (id INTEGER PRIMARY KEY AUTOINCREMENT, criado_em TEXT NOT NULL, dados TEXT NOT NULL)"
     );
-    // v2: uma resposta por celular/navegador (respostas antigas ficam com dispositivo NULL).
+    // v2: uma resposta por aparelho (respostas antigas ficam com dispositivo NULL).
     const cols = ctx.storage.sql.exec("PRAGMA table_info(respostas)").toArray().map((c) => c.name);
     if (!cols.includes("dispositivo")) ctx.storage.sql.exec("ALTER TABLE respostas ADD COLUMN dispositivo TEXT");
     ctx.storage.sql.exec("CREATE UNIQUE INDEX IF NOT EXISTS respostas_dispositivo ON respostas (dispositivo)");
   }
 
-  // ids: identificadores conhecidos deste celular. Devolve false se algum já respondeu.
+  // ids: identificadores conhecidos deste aparelho. Devolve false se algum já respondeu.
   salvar(ids, r) {
     for (const id of ids) {
       if (this.ctx.storage.sql.exec("SELECT 1 FROM respostas WHERE dispositivo = ?", id).toArray().length) return false;
