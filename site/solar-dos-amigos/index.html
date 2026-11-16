@@ -52,6 +52,15 @@ h2{font-size:1.45rem;margin-bottom:6px}
 .chip:has(input:focus-visible){outline:3px solid var(--gol);outline-offset:2px}
 .chips.dias .chip{min-width:calc((100% - 20px)/3);justify-content:center}
 .chips.dias .chip .ck{display:none}
+.conts{display:flex;flex-direction:column;gap:10px}
+.cont{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 12px 10px 16px;border:2px solid var(--line);border-radius:14px;background:#fff;transition:background .15s,border-color .15s,color .15s}
+.cont .nm{flex:1;font-weight:700;line-height:1.25}.cont .nm small{display:block;font-weight:600;color:var(--gray);font-size:.85rem}
+.cont .st{display:flex;align-items:center;gap:4px}
+.cont button{width:44px;height:44px;border-radius:12px;border:2px solid var(--line);background:var(--paper);font:800 1.4rem/1 Figtree,sans-serif;color:var(--navy);cursor:pointer;-webkit-tap-highlight-color:transparent}
+.cont button:disabled{opacity:.35;cursor:default}
+.cont output{min-width:30px;text-align:center;font:800 1.3rem/1 'Bricolage Grotesque',sans-serif}
+.cont.on{background:var(--blue);border-color:var(--blue);color:#fff}.cont.on small{color:var(--mist)}
+.cont.on button{background:#fff;border-color:#fff}.cont.on .mais{background:var(--gol);border-color:var(--gol);color:#fff}
 .grupo{background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px;margin:0 0 14px}
 .grupo h3{font:800 1.05rem/1.2 'Bricolage Grotesque',sans-serif;margin:0 0 12px;display:flex;align-items:center;gap:8px}
 .grupo h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gol)}
@@ -108,13 +117,13 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
 
   <section data-step="1" class="on">
     <h2>Quem da sua casa faria aulas?</h2>
-    <p class="dica">Marque todas as idades que se aplicam.</p>
-    <fieldset class="chips col" id="faixas"><legend class="hp">Faixas etárias</legend></fieldset>
+    <p class="dica">Toque em + para cada pessoa. Duas crianças da mesma idade? Toque duas vezes.</p>
+    <div class="conts" id="faixas" role="group" aria-label="Pessoas por faixa etária"></div>
   </section>
 
   <section data-step="2">
     <h2>O que gostariam de praticar?</h2>
-    <p class="dica">Toque em quantas quiser para cada idade.</p>
+    <p class="dica">Toque em quantas quiser para cada pessoa.</p>
     <div id="grupos"></div>
     <label class="campo sub">Outra atividade?<span>Opcional. Escreva aqui se não encontrou a sua.</span><input type="text" name="outra" maxlength="200" placeholder="Ex.: natação, yoga, tênis"></label>
   </section>
@@ -159,11 +168,11 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
 (function(){
 var PESQUISA="solar-dos-amigos", WA="5511953289472", LINK="https://mmsports.me/solar-dos-amigos/";
 var FAIXAS=[
-  {id:"Crianças de 4 a 6 anos",t:"Crianças",s:"4 a 6 anos",a:["Futsal","Futebol","Judô","Ballet e dança","Ginástica e recreação"]},
-  {id:"Crianças de 7 a 11 anos",t:"Crianças",s:"7 a 11 anos",a:["Futsal","Futebol","Vôlei","Basquete","Judô","Dança","Ginástica"]},
-  {id:"Adolescentes de 12 a 17 anos",t:"Adolescentes",s:"12 a 17 anos",a:["Vôlei","Futsal","Basquete","Judô e lutas","Danças e ritmos","Funcional"]},
-  {id:"Adultos",t:"Adultos",s:"18 a 59 anos",a:["Pilates","Funcional","Danças e ritmos","Vôlei","Futsal","Judô e lutas","Alongamento","Hidroginástica"]},
-  {id:"60 anos ou mais",t:"60 anos ou mais",s:"Terceira idade",a:["Ginástica","Hidroginástica","Pilates","Alongamento","Danças e ritmos","Vôlei adaptado"]}
+  {id:"Crianças de 4 a 6 anos",t:"Crianças",p:"Criança",s:"4 a 6 anos",a:["Futsal","Futebol","Judô","Ballet e dança","Ginástica e recreação"]},
+  {id:"Crianças de 7 a 11 anos",t:"Crianças",p:"Criança",s:"7 a 11 anos",a:["Futsal","Futebol","Vôlei","Basquete","Judô","Dança","Ginástica"]},
+  {id:"Adolescentes de 12 a 17 anos",t:"Adolescentes",p:"Adolescente",s:"12 a 17 anos",a:["Vôlei","Futsal","Basquete","Judô e lutas","Danças e ritmos","Funcional"]},
+  {id:"Adultos",t:"Adultos",p:"Adulto",s:"18 a 59 anos",a:["Pilates","Funcional","Danças e ritmos","Vôlei","Futsal","Judô e lutas","Alongamento","Hidroginástica"]},
+  {id:"60 anos ou mais",t:"60 anos ou mais",p:"Pessoa",s:"Terceira idade",a:["Ginástica","Hidroginástica","Pilates","Alongamento","Danças e ritmos","Vôlei adaptado"]}
 ];
 var DIAS=["Seg","Ter","Qua","Qui","Sex","Sáb"], DIAS_N={Seg:"Segunda",Ter:"Terça",Qua:"Quarta",Qui:"Quinta",Sex:"Sexta","Sáb":"Sábado"};
 var PERIODOS=[["Manhã","7h às 12h"],["Tarde","12h às 18h"],["Noite","18h às 21h30"]];
@@ -179,23 +188,37 @@ function chip(nome,valor,titulo,sub){
   if(sub){var sm=document.createElement("small");sm.textContent=sub;s.appendChild(sm)}
   l.appendChild(i);l.appendChild(c);l.appendChild(s);return l;
 }
-var fx=document.getElementById("faixas");FAIXAS.forEach(function(x){fx.appendChild(chip("faixa",x.id,x.t,x.s))});
+var MAX=6,qtd={};
+var fx=document.getElementById("faixas");FAIXAS.forEach(function(x){
+  qtd[x.id]=0;var r=document.createElement("div");r.className="cont";
+  var nm=document.createElement("div");nm.className="nm";nm.textContent=x.t;var sm=document.createElement("small");sm.textContent=x.s;nm.appendChild(sm);
+  var st=document.createElement("div");st.className="st";
+  var menos=document.createElement("button");menos.type="button";menos.className="menos";menos.textContent="−";menos.setAttribute("aria-label","Tirar uma pessoa: "+x.id);
+  var out=document.createElement("output");out.setAttribute("aria-live","polite");
+  var mais=document.createElement("button");mais.type="button";mais.className="mais";mais.textContent="+";mais.setAttribute("aria-label","Adicionar uma pessoa: "+x.id);
+  function upd(){out.textContent=qtd[x.id];menos.disabled=!qtd[x.id];mais.disabled=qtd[x.id]>=MAX;r.classList.toggle("on",qtd[x.id]>0);erro.textContent=""}
+  menos.onclick=function(){if(qtd[x.id]>0){qtd[x.id]--;upd()}};mais.onclick=function(){if(qtd[x.id]<MAX){qtd[x.id]++;upd()}};
+  st.appendChild(menos);st.appendChild(out);st.appendChild(mais);r.appendChild(nm);r.appendChild(st);fx.appendChild(r);x.reset=function(){qtd[x.id]=0;upd()};upd();
+});
 var di=document.getElementById("dias");DIAS.forEach(function(d){var c=chip("dia",DIAS_N[d],d);c.querySelector("input").setAttribute("aria-label",DIAS_N[d]);di.appendChild(c)});
 var pe=document.getElementById("periodos");PERIODOS.forEach(function(p){pe.appendChild(chip("periodo",p[0],p[0],p[1]))});
 
 function marcados(nome,raiz){return Array.prototype.map.call((raiz||f).querySelectorAll('input[name="'+nome+'"]:checked'),function(i){return i.value})}
 
+function totalPessoas(){var t=0;for(var k in qtd)t+=qtd[k];return t}
 function montarGrupos(){
   var g=document.getElementById("grupos"),antes={};
-  g.querySelectorAll(".grupo").forEach(function(d){antes[d.dataset.faixa]=marcados("atv",d)});
+  g.querySelectorAll(".grupo").forEach(function(d){antes[d.dataset.chave]=marcados("atv",d)});
   g.innerHTML="";
   FAIXAS.forEach(function(x){
-    if(marcados("faixa").indexOf(x.id)<0)return;
-    var d=document.createElement("fieldset");d.className="grupo";d.dataset.faixa=x.id;
-    var h=document.createElement("h3");h.textContent=x.t+(x.t===x.s||x.id==="60 anos ou mais"?"":", "+x.s);d.appendChild(h);
-    var w=document.createElement("div");w.className="chips";
-    x.a.forEach(function(a){var c=chip("atv",a,a);if((antes[x.id]||[]).indexOf(a)>=0)c.querySelector("input").checked=true;w.appendChild(c)});
-    d.appendChild(w);g.appendChild(d);
+    for(var i=1;i<=qtd[x.id];i++){
+      var chave=x.id+"#"+i,d=document.createElement("fieldset");d.className="grupo";d.dataset.faixa=x.id;d.dataset.chave=chave;
+      var h=document.createElement("h3");
+      h.textContent=qtd[x.id]>1?x.p+" "+i+" · "+x.s:(x.id==="60 anos ou mais"?x.t:x.p+" · "+x.s);d.appendChild(h);
+      var w=document.createElement("div");w.className="chips";
+      x.a.forEach(function(a){var c=chip("atv",a,a);if((antes[chave]||[]).indexOf(a)>=0)c.querySelector("input").checked=true;w.appendChild(c)});
+      d.appendChild(w);g.appendChild(d);
+    }
   });
 }
 
@@ -213,23 +236,23 @@ function mostrar(n){
 }
 
 function validar(n){
-  if(n===1&&!marcados("faixa").length)return"Marque ao menos uma idade para continuar.";
+  if(n===1&&!totalPessoas())return"Toque em + em ao menos uma idade para continuar.";
   if(n===2){var falta=Array.prototype.some.call(document.querySelectorAll(".grupo"),function(d){return!marcados("atv",d).length});
-    if(falta&&!f.outra.value.trim())return"Escolha ao menos uma atividade para cada idade (ou escreva outra).";}
+    if(falta&&!f.outra.value.trim())return"Escolha ao menos uma atividade para cada pessoa (ou escreva outra).";}
   if(n===3&&!marcados("dia").length)return"Marque ao menos um dia.";
   if(n===3&&!marcados("periodo").length)return"Marque ao menos um período.";
   return"";
 }
 
 function dados(){
-  var atv={};document.querySelectorAll(".grupo").forEach(function(d){atv[d.dataset.faixa]=marcados("atv",d)});
-  return{faixas:marcados("faixa"),atividades:atv,outra:f.outra.value,dias:marcados("dia"),periodos:marcados("periodo"),
+  var pessoas=Array.prototype.map.call(document.querySelectorAll(".grupo"),function(d){return{faixa:d.dataset.faixa,atividades:marcados("atv",d)}});
+  return{pessoas:pessoas,outra:f.outra.value,dias:marcados("dia"),periodos:marcados("periodo"),
     acesso:ACESSO,dispositivo:idDisp(),nome:f.nome.value,bloco:f.bloco.value,apto:f.apto.value,whatsapp:f.whatsapp.value,site:f.site.value};
 }
 
 function textoWhats(d){
   var l=["Olá, MM Sports! Minha resposta da pesquisa do Solar dos Amigos:"];
-  d.faixas.forEach(function(x){l.push("• "+x+": "+((d.atividades[x]||[]).join(", ")||"sem preferência"))});
+  d.pessoas.forEach(function(p){l.push("• "+p.faixa+": "+(p.atividades.join(", ")||"sem preferência"))});
   if(d.outra)l.push("• Outra: "+d.outra);
   l.push("• Dias: "+d.dias.join(", "));l.push("• Período: "+d.periodos.join(", "));
   var u=[d.bloco&&"Bloco "+d.bloco,d.apto&&"ap. "+d.apto].filter(Boolean).join(", ");
