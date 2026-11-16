@@ -10,13 +10,14 @@ import { DurableObject } from "cloudflare:workers";
 // - acessoSha256: código que vai no link do formulário enviado aos moradores
 //   (sem ele, a página não abre o formulário e o envio é recusado);
 // - leitores: chaves que abrem o painel de resultados (uma por pessoa,
-//   para poder trocar a de alguém sem afetar os outros).
+//   para poder trocar a de alguém sem afetar os outros). Só quem tem
+//   admin: true pode apagar respostas.
 const PESQUISAS = {
   "solar-dos-amigos": {
     acessoSha256: "3639815b146aefcf88e11bfbe47b56885ec0b20bf6fd1fe6cd191149f1e90de9",
     leitores: {
-      felipe: "ef38d068460e344a48e2c615063b5fee2fc143094b2e1ed1e91c672493b1fa4b",
-      sindica: "d2ce02b2a1241684f193d203b1be1564fbcea1e3a6d486cdf7cca62f36a68008",
+      felipe: { sha256: "ef38d068460e344a48e2c615063b5fee2fc143094b2e1ed1e91c672493b1fa4b", admin: true },
+      sindica: { sha256: "d2ce02b2a1241684f193d203b1be1564fbcea1e3a6d486cdf7cca62f36a68008" },
     },
   },
 };
@@ -118,14 +119,16 @@ export default {
     if (request.method !== "GET" && request.method !== "DELETE") return json({ erro: "Use GET." }, 405, { allow: "GET, DELETE" });
     const chave = (request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "") || url.searchParams.get("k") || "";
     const h = chave ? await sha256(chave) : "";
-    if (!h || !Object.values(pesquisa.leitores).some((x) => iguais(h, x))) return json({ erro: "Chave inválida." }, 401);
+    const leitor = h && Object.values(pesquisa.leitores).find((x) => iguais(h, x.sha256));
+    if (!leitor) return json({ erro: "Chave inválida." }, 401);
     if (request.method === "DELETE") {
+      if (!leitor.admin) return json({ erro: "Sem permissão para apagar." }, 403);
       const id = Number(url.searchParams.get("id"));
       if (!Number.isInteger(id) || id < 1) return json({ erro: "Resposta inválida." }, 400);
       await stub.apagar(id);
       return json({ ok: true });
     }
-    return json({ pesquisa: slug, respostas: await stub.listar() });
+    return json({ pesquisa: slug, admin: !!leitor.admin, respostas: await stub.listar() });
   },
 };
 
