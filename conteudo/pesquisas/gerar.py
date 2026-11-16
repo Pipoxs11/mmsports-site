@@ -47,6 +47,7 @@ PESQUISAS = [
     {
         # Formulário padronizado, igual ao do Solar dos Amigos (pedido do Felipe, 16/11/2026).
         "slug": "lavance-morumbi",
+        "versao": "lavance-padrao-1",
         "nome": "Lavance Morumbi",
         "faixas": faixas(
             ["Futsal/Futebol", "Judô", "Ballet e dança", "Ginástica e recreação"],
