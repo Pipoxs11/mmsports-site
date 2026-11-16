@@ -46,16 +46,6 @@ const texto = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const lista = (v, maxItens, maxTam) =>
   Array.isArray(v) ? [...new Set(v.filter((x) => typeof x === "string").map((x) => x.trim().slice(0, maxTam)).filter(Boolean))].slice(0, maxItens) : [];
 
-// Chave do apartamento: "Bloco A, ap. 042" e "a / 42" viram "A|42".
-function chaveUnidade(bloco, apto) {
-  const n = (v) =>
-    v.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase()
-      .replace(/\b(BLOCO|BLC|BL|TORRE|APARTAMENTO|APTO|AP)\b\.?/g, "")
-      .replace(/[^A-Z0-9]/g, "").replace(/^0+(?=.)/, "");
-  const b = n(bloco), a = n(apto);
-  return b && a ? b + "|" + a : "";
-}
-
 function limpar(d) {
   const atividades = {};
   if (d && typeof d.atividades === "object" && !Array.isArray(d.atividades)) {
@@ -75,6 +65,7 @@ function limpar(d) {
     apto: texto(d.apto, 10),
     unidade: [texto(d.bloco, 20) && "Bloco " + texto(d.bloco, 20).replace(/^(bloco|torre)\s*/i, ""), texto(d.apto, 10) && "ap. " + texto(d.apto, 10)].filter(Boolean).join(", "),
     whatsapp: texto(d.whatsapp, 30),
+    dispositivo: /^[a-z0-9-]{8,40}$/i.test(d.dispositivo || "") ? d.dispositivo : "",
   };
 }
 
@@ -107,11 +98,21 @@ export default {
       if (d && d.site) return json({ ok: true }); // campo-isca contra robôs
       const r = limpar(d);
       if (!r.faixas.length) return json({ erro: "Escolha ao menos uma faixa etária." }, 400);
-      const chave = chaveUnidade(r.bloco, r.apto);
-      if (!chave) return json({ erro: "Informe o bloco e o apartamento." }, 400);
-      if (!(await stub.salvar(chave, r)))
-        return json({ erro: "Este apartamento já respondeu.", codigo: "repetido" }, 409);
-      return json({ ok: true });
+      // Uma resposta por celular/navegador: cookie do servidor + id guardado no
+      // navegador. Por IP não dá: redes móveis e o Wi-Fi do condomínio fazem
+      // vários vizinhos aparecerem com o mesmo IP.
+      const nomeCookie = "mm_" + slug.replace(/-/g, "_");
+      const cookie = (request.headers.get("cookie") || "").match(new RegExp("(?:^|;\\s*)" + nomeCookie + "=([a-z0-9-]{8,40})", "i"));
+      const ids = [...new Set([cookie && cookie[1], r.dispositivo].filter(Boolean))];
+      const id = ids[0] || crypto.randomUUID();
+      delete r.dispositivo;
+      // Só um resumo do IP, para o painel apontar respostas da mesma conexão.
+      r.ip = (await sha256(slug + (request.headers.get("cf-connecting-ip") || ""))).slice(0, 12);
+      const repetido = { erro: "Este celular já respondeu.", codigo: "repetido" };
+      if (!(await stub.salvar(ids.length ? ids : [id], r))) return json(repetido, 409);
+      return json({ ok: true }, 200, {
+        "set-cookie": nomeCookie + "=" + id + "; Max-Age=31536000; Path=/; Secure; HttpOnly; SameSite=Lax",
+      });
     }
 
     if (request.method !== "GET" && request.method !== "DELETE") return json({ erro: "Use GET." }, 405, { allow: "GET, DELETE" });
@@ -134,18 +135,19 @@ export class Interesse extends DurableObject {
     ctx.storage.sql.exec(
       "CREATE TABLE IF NOT EXISTS respostas (id INTEGER PRIMARY KEY AUTOINCREMENT, criado_em TEXT NOT NULL, dados TEXT NOT NULL)"
     );
-    // v2: uma resposta por apartamento (respostas antigas ficam com unidade NULL).
+    // v2: uma resposta por celular/navegador (respostas antigas ficam com dispositivo NULL).
     const cols = ctx.storage.sql.exec("PRAGMA table_info(respostas)").toArray().map((c) => c.name);
-    if (!cols.includes("unidade")) ctx.storage.sql.exec("ALTER TABLE respostas ADD COLUMN unidade TEXT");
-    ctx.storage.sql.exec("CREATE UNIQUE INDEX IF NOT EXISTS respostas_unidade ON respostas (unidade)");
+    if (!cols.includes("dispositivo")) ctx.storage.sql.exec("ALTER TABLE respostas ADD COLUMN dispositivo TEXT");
+    ctx.storage.sql.exec("CREATE UNIQUE INDEX IF NOT EXISTS respostas_dispositivo ON respostas (dispositivo)");
   }
 
-  // Devolve false se o apartamento já respondeu.
-  salvar(unidade, r) {
-    const ja = this.ctx.storage.sql.exec("SELECT 1 FROM respostas WHERE unidade = ?", unidade).toArray().length;
-    if (ja) return false;
+  // ids: identificadores conhecidos deste celular. Devolve false se algum já respondeu.
+  salvar(ids, r) {
+    for (const id of ids) {
+      if (this.ctx.storage.sql.exec("SELECT 1 FROM respostas WHERE dispositivo = ?", id).toArray().length) return false;
+    }
     this.ctx.storage.sql.exec(
-      "INSERT INTO respostas (criado_em, dados, unidade) VALUES (?, ?, ?)", new Date().toISOString(), JSON.stringify(r), unidade
+      "INSERT INTO respostas (criado_em, dados, dispositivo) VALUES (?, ?, ?)", new Date().toISOString(), JSON.stringify(r), ids[0]
     );
     return true;
   }
