@@ -264,8 +264,8 @@ function idDisp(){try{var i=localStorage.getItem("mm-id-"+PESQUISA);if(!i){i=(cr
 function marcarRespondido(){try{localStorage.setItem("mm-"+PESQUISA,"1")}catch(e){}}
 function jaRespondido(){try{return localStorage.getItem("mm-"+PESQUISA)==="1"}catch(e){return false}}
 function jaRespondeu(){var s=document.querySelector('section[data-step="5"]');
-  s.querySelector("h2").textContent="Este celular já respondeu";
-  s.querySelector("p").textContent="Obrigado! A pesquisa aceita uma resposta por celular, e nela já dá para marcar todas as pessoas da casa. Ajude a divulgar entre os vizinhos:";
+  s.querySelector("h2").textContent="Este aparelho já respondeu";
+  s.querySelector("p").textContent="Obrigado! A pesquisa aceita uma resposta por aparelho, e nela já dá para marcar todas as pessoas da casa. Ajude a divulgar entre os vizinhos:";
   f.hidden=false;mostrar(5)}
 function travar(){document.getElementById("carregando").hidden=true;document.getElementById("trava").hidden=false;
   document.querySelector(".bar").hidden=true;document.getElementById("passo").hidden=true;document.getElementById("intro").hidden=true}
