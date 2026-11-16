@@ -399,6 +399,84 @@ h1 em{font-style:normal;color:${C.creme}}
 </div>
 <div class="p">Para crianças, adolescentes, adultos e 60+, com turmas separadas por idade.</div>
 `, logoUma),
+  // 17. Ilustração: planejamento de 2027 e previsão orçamentária (Instagram, 17/11/2026, divulga o artigo do blog)
+  '17-planejamento-2027': base(C.cobalto, C.creme, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:86px;line-height:.96;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.tinta}}
+.il{display:flex;justify-content:center;margin-top:40px}
+.steps{display:flex;flex-direction:column;gap:16px;padding:34px 80px 0}
+.st{display:flex;gap:22px;align-items:center;font-size:31px;font-weight:700;line-height:1.2}
+.st b{flex:none;width:52px;height:52px;border-radius:50%;background:${C.tinta};color:${C.laranja};font:800 28px 'Bricolage Grotesque';display:flex;align-items:center;justify-content:center}
+.blog{position:absolute;left:80px;right:80px;bottom:150px;font-size:30px;font-weight:800;color:${C.tinta}}
+</style>
+<div class="top"><div class="k" style="color:${C.tinta}">Para síndicos · Planejamento 2027</div>
+<h1>Esporte no condomínio começa no <em>orçamento</em>.</h1></div>
+<div class="il"><svg width="920" height="380" viewBox="0 0 920 380">
+ <rect width="920" height="380" rx="32" fill="${C.tinta}"/>
+ <rect x="40" y="34" width="840" height="64" rx="16" fill="${C.laranja}"/>
+ <text x="70" y="78" font-family="Bricolage Grotesque" font-weight="800" font-size="38" fill="${C.tinta}">2027</text>
+ <circle cx="760" cy="66" r="10" fill="${C.tinta}"/><circle cx="800" cy="66" r="10" fill="${C.tinta}"/><circle cx="840" cy="66" r="10" fill="${C.tinta}"/>
+ ${['JAN','FEV','MAR','ABR','MAI','JUN','JUL','AGO','SET','OUT','NOV','DEZ'].map((m, i) => { const c = i % 6, r = Math.floor(i / 6), x = 40 + c * 142, y = 118 + r * 124, on = i > 0 && i < 12 && i !== 6 && i !== 11; return `<rect x="${x}" y="${y}" width="130" height="110" rx="16" fill="${on ? '#1d2f63' : '#17264f'}"/><text x="${x + 18}" y="${y + 38}" font-family="Figtree" font-weight="800" font-size="24" letter-spacing="2" fill="${C.creme}" fill-opacity=".8">${m}</text>${on ? `<circle cx="${x + 34}" cy="${y + 74}" r="12" fill="${C.laranja}"/><circle cx="${x + 70}" cy="${y + 74}" r="12" fill="${C.creme}"/>` : ''}`; }).join('')}
+</svg></div>
+<div class="steps">
+ <div class="st"><b>1</b>Ouça os moradores sobre atividades e horários</div>
+ <div class="st"><b>2</b>Escolha o modelo: pay per use, rateio ou pacote</div>
+ <div class="st"><b>3</b>Leve a proposta pronta para a assembleia</div>
+</div>
+<div class="blog">Guia completo no blog. Link na bio.</div>
+`, logoNeg),
+
+  // 18. Só texto: Novembro Azul (Instagram, 19/11/2026)
+  '18-novembro-azul': base(C.tinta, C.creme, `
+<style>
+.top{padding:96px 80px 0}
+h1{font-size:104px;line-height:.94;font-weight:800;margin-top:26px}
+h1 em{font-style:normal;color:${C.cobalto}}
+.it{display:flex;gap:26px;align-items:flex-start;padding:0 80px;margin-top:30px}
+.it i{flex:none;width:18px;height:64px;border-radius:9px;background:${C.cobalto};margin-top:4px}
+.it b{display:block;font-size:40px;font-weight:800;line-height:1.1}
+.it span{display:block;font-size:29px;line-height:1.32;margin-top:6px;opacity:.88}
+.lista{margin-top:56px}
+.p{padding:48px 80px 0;font-size:32px;line-height:1.35;font-weight:700;color:${C.nevoa}}
+</style>
+<div class="top"><div class="k" style="color:${C.cobalto}">Novembro Azul</div>
+<h1>Cuidar da saúde também é <em>se mexer</em>.</h1></div>
+<div class="lista">
+ <div class="it"><i></i><div><b>Faça seus exames</b><span>Consulte o médico e mantenha o check-up em dia.</span></div></div>
+ <div class="it"><i></i><div><b>Movimente-se toda semana</b><span>A OMS recomenda de 150 a 300 minutos de atividade moderada por semana para adultos.</span></div></div>
+ <div class="it"><i></i><div><b>Comece perto de casa</b><span>Com aula no condomínio, a rotina fica mais fácil de manter.</span></div></div>
+</div>
+<div class="p">Funcional, lutas, vôlei, basquete, pilates: tem turma para adultos e 60+.</div>
+`, logoNeg),
+
+  // 19. Foto real: fim de semana em família (Instagram, sábado 21/11/2026)
+  '19-fim-de-semana-em-familia': base(C.creme, C.tinta, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:80px;line-height:.98;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.laranja}}
+.row{display:flex;gap:40px;padding:46px 80px 0}
+.row .ph{flex:none;width:420px}
+.col{flex:1;display:flex;flex-direction:column;gap:20px}
+.g{background:#fff;border-radius:22px;padding:26px 24px;border-left:10px solid ${C.laranja}}
+.g:nth-child(2){border-color:${C.cobalto}}.g:nth-child(4){border-color:${C.cobalto}}
+.g b{display:block;font-size:31px;font-weight:800;line-height:1.1}
+.g span{display:block;font-size:24px;line-height:1.3;margin-top:6px;opacity:.85}
+.p{position:absolute;left:80px;right:80px;bottom:150px;font-size:28px;font-weight:700}
+</style>
+<div class="top"><div class="k" style="color:${C.laranja}">Fim de semana em família</div>
+<h1>4 brincadeiras para fazer na <em>área comum</em>.</h1></div>
+<div class="row">${box(foto('futsal-infantil/futsal-5a8-turma-quadra-madeira-vertical.jpg'), 680)}
+<div class="col">
+ <div class="g"><b>Pega-pega com bola</b><span>Quem está com a bola é o pegador.</span></div>
+ <div class="g"><b>Circuito de cones</b><span>Pular, desviar e correr com obstáculos simples.</span></div>
+ <div class="g"><b>Bobinho</b><span>Toque de bola em roda, pais contra filhos.</span></div>
+ <div class="g"><b>Estátua dançante</b><span>A música para, todo mundo congela.</span></div>
+</div></div>
+<div class="p">Na foto, uma das nossas turmas de futsal com o professor Matheus.</div>
+`, logoCor),
 };
 
 (async () => {
