@@ -12,3 +12,6 @@
 
 /*.js
   Cache-Control: public, max-age=0, must-revalidate
+
+/solar-dos-amigos/*
+  Cache-Control: no-cache
