@@ -52,6 +52,8 @@ h2{font-size:1.45rem;margin-bottom:6px}
 .chip:has(input:focus-visible){outline:3px solid var(--gol);outline-offset:2px}
 .chips.dias .chip{min-width:calc((100% - 20px)/3);justify-content:center}
 .chips.dias .chip .ck{display:none}
+.chip.off{opacity:.4;cursor:default}
+.chips.col .chip:has(input[type=radio]) .ck{border-radius:50%}
 .conts{display:flex;flex-direction:column;gap:10px}
 .cont{display:flex;align-items:center;gap:12px;min-height:64px;padding:10px 12px 10px 16px;border:2px solid var(--line);border-radius:14px;background:#fff;transition:background .15s,border-color .15s,color .15s}
 .cont .nm{flex:1;font-weight:700;line-height:1.25}.cont .nm small{display:block;font-weight:600;color:var(--gray);font-size:.85rem}
@@ -129,11 +131,11 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
   </section>
 
   <section data-step="3">
-    <h2>Quais dias ficam melhores?</h2>
-    <p class="dica">Pode marcar vários.</p>
+    <h2>Quais são os melhores dias?</h2>
+    <p class="dica">Escolha até 2 dias, os que você mais prefere.</p>
     <fieldset class="chips dias" id="dias"><legend class="hp">Dias da semana</legend></fieldset>
-    <h2 class="sub">E em qual período?</h2>
-    <p class="dica">Pode marcar mais de um.</p>
+    <h2 class="sub">E qual é o melhor período?</h2>
+    <p class="dica">Escolha 1.</p>
     <fieldset class="chips col" id="periodos"><legend class="hp">Períodos</legend></fieldset>
   </section>
 
@@ -173,7 +175,7 @@ var FAIXAS=[
   {id:"Adultos",t:"Adultos",p:"Adulto",s:"18 a 59 anos",a:["Pilates","Funcional","Danças e ritmos","Vôlei","Futsal/Futebol","Judô e lutas","Alongamento","Hidroginástica"]},
   {id:"60 anos ou mais",t:"60 anos ou mais",p:"Pessoa",s:"Terceira idade",a:["Ginástica","Hidroginástica","Pilates","Alongamento","Danças e ritmos","Vôlei adaptado"]}
 ];
-var DIAS=["Seg","Ter","Qua","Qui","Sex","Sáb"], DIAS_N={Seg:"Segunda",Ter:"Terça",Qua:"Quarta",Qui:"Quinta",Sex:"Sexta","Sáb":"Sábado"};
+var DIAS=["Seg","Ter","Qua","Qui","Sex"], DIAS_N={Seg:"Segunda",Ter:"Terça",Qua:"Quarta",Qui:"Quinta",Sex:"Sexta"}, MAX_DIAS=2;
 var PERIODOS=[["Manhã","7h às 12h"],["Tarde","12h às 18h"],["Noite","18h às 21h30"]];
 var ACESSO=new URLSearchParams(location.search).get("c")||"";
 var f=document.getElementById("f"),erro=document.getElementById("erro"),seguir=document.getElementById("seguir"),voltar=document.getElementById("voltar");
@@ -200,7 +202,10 @@ var fx=document.getElementById("faixas");FAIXAS.forEach(function(x){
   st.appendChild(menos);st.appendChild(out);st.appendChild(mais);r.appendChild(nm);r.appendChild(st);fx.appendChild(r);x.reset=function(){qtd[x.id]=0;upd()};upd();
 });
 var di=document.getElementById("dias");DIAS.forEach(function(d){var c=chip("dia",DIAS_N[d],d);c.querySelector("input").setAttribute("aria-label",DIAS_N[d]);di.appendChild(c)});
-var pe=document.getElementById("periodos");PERIODOS.forEach(function(p){pe.appendChild(chip("periodo",p[0],p[0],p[1]))});
+var pe=document.getElementById("periodos");PERIODOS.forEach(function(p){var c=chip("periodo",p[0],p[0],p[1]);c.querySelector("input").type="radio";pe.appendChild(c)});
+// Dias: no máximo 2. Ao chegar em 2, os outros ficam travados até desmarcar um.
+di.addEventListener("change",function(){var n=marcados("dia").length;
+  di.querySelectorAll("input").forEach(function(i){var trava=n>=MAX_DIAS&&!i.checked;i.disabled=trava;i.parentNode.classList.toggle("off",trava)})});
 
 function marcados(nome,raiz){return Array.prototype.map.call((raiz||f).querySelectorAll('input[name="'+nome+'"]:checked'),function(i){return i.value})}
 

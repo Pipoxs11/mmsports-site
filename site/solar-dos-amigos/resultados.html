@@ -90,7 +90,7 @@ function render(rs,admin){
   var g=el("div","grid");
   g.appendChild(card("Atividades mais pedidas (nº de pessoas)",contar(atv)));
   g.appendChild(card("Pessoas por faixa etária",contar(faixas),0,["Crianças de 4 a 6 anos","Crianças de 7 a 11 anos","Adolescentes de 12 a 17 anos","Adultos","60 anos ou mais"]));
-  g.appendChild(card("Dias preferidos",contar(dias),rs.length,["Segunda","Terça","Quarta","Quinta","Sexta","Sábado"]));
+  g.appendChild(card("Dias preferidos",contar(dias),rs.length,["Segunda","Terça","Quarta","Quinta","Sexta"]));
   g.appendChild(card("Períodos preferidos",contar(per),rs.length,["Manhã","Tarde","Noite"]));
   ["Crianças de 4 a 6 anos","Crianças de 7 a 11 anos","Adolescentes de 12 a 17 anos","Adultos","60 anos ou mais"].forEach(function(f){
     if(porFaixa[f])g.appendChild(card("Atividades · "+f,contar(porFaixa[f])))});
