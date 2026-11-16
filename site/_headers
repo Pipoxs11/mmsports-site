@@ -15,3 +15,9 @@
 
 /solar-dos-amigos/*
   Cache-Control: no-cache
+
+/lavance-morumbi/*
+  Cache-Control: no-cache
+
+/lake-tahoe/*
+  Cache-Control: no-cache

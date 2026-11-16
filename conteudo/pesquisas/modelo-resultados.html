@@ -1,0 +1,125 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Resultados da pesquisa | {{NOME}} | MM Sports</title>
+<meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@700;800&family=Figtree:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0E1B3D;--blue:#2B4BFF;--mist:#DDE4FF;--paper:#FFF6E8;--gol:#FF6A2B;--gray:#4B5563;--line:#E7DCC8}
+*{box-sizing:border-box}body{margin:0;font:16px/1.5 Figtree,system-ui,sans-serif;color:var(--navy);background:var(--paper)}
+h1,h2{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;letter-spacing:-.02em;line-height:1.1;margin:0 0 .4em}
+.top{background:var(--navy);color:var(--paper);padding:20px 16px 26px}
+.in{max-width:1000px;margin:0 auto}
+.brand{display:flex;align-items:center;gap:10px;font:800 1.1rem/1 'Bricolage Grotesque',sans-serif}.brand img{height:24px}
+.top h1{font-size:clamp(1.5rem,5vw,2.2rem);margin-top:18px}
+.top p{margin:0;opacity:.85}
+main{padding:20px 16px 40px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:18px}
+.kpi{background:#fff;border:2px solid var(--line);border-radius:16px;padding:14px 16px}
+.kpi b{display:block;font:800 2rem/1 'Bricolage Grotesque',sans-serif;color:var(--blue)}
+.kpi span{color:var(--gray);font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{background:#fff;border:2px solid var(--line);border-radius:18px;padding:16px 18px;margin-bottom:14px}
+.card h2{font-size:1.15rem}
+.row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;align-items:center;margin:8px 0}
+.row .n{font-weight:800;font-variant-numeric:tabular-nums}
+.row .t{grid-column:1/-1;height:10px;background:var(--paper);border-radius:9px;overflow:hidden}
+.row .t i{display:block;height:100%;background:var(--blue);border-radius:9px}
+.row.top1 .t i{background:var(--gol)}
+.vazio{color:var(--gray)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 18px}
+.btn{min-height:46px;padding:0 18px;border-radius:12px;border:2px solid transparent;font:800 1rem Figtree,sans-serif;cursor:pointer;background:var(--gol);color:#fff}
+.btn.line{background:#fff;border-color:var(--line);color:var(--navy)}
+.tab{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.9rem}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:800;white-space:nowrap}
+.msg{font-weight:700}
+.del{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 10px;font:700 .8rem Figtree,sans-serif;color:#B42318;cursor:pointer}
+form.k{display:flex;gap:10px;flex-wrap:wrap}form.k input{flex:1;min-width:220px;padding:12px;font:inherit;border:2px solid var(--line);border-radius:12px}
+</style></head><body>
+<header class="top"><div class="in"><div class="brand"><img src="/logo.svg" alt="">MM Sports</div>
+<h1>Pesquisa de interesse · {{NOME}}</h1><p id="sub">Resultados em tempo real. Página interna, não compartilhe o link.</p></div></header>
+<main><div class="in" id="app"><p class="msg">Carregando...</p></div></main>
+<script>
+(function(){
+var PESQUISA="{{SLUG}}",app=document.getElementById("app");
+function chave(){var h=new URLSearchParams(location.hash.slice(1));return h.get("k")||""}
+function el(t,c,txt){var e=document.createElement(t);if(c)e.className=c;if(txt!=null)e.textContent=txt;return e}
+function contar(lista){var m={};lista.forEach(function(v){m[v]=(m[v]||0)+1});return Object.keys(m).map(function(k){return[k,m[k]]}).sort(function(a,b){return b[1]-a[1]||a[0].localeCompare(b[0])})}
+function card(titulo,pares,base,ordemFixa){
+  var c=el("section","card");c.appendChild(el("h2",null,titulo));
+  if(ordemFixa){var mp={};pares.forEach(function(p){mp[p[0]]=p[1]});pares=ordemFixa.map(function(k){return[k,mp[k]||0]})}
+  if(!pares.length){c.appendChild(el("p","vazio","Sem respostas ainda."));return c}
+  var max=Math.max.apply(null,pares.map(function(p){return p[1]}))||1;
+  pares.forEach(function(p,i){var r=el("div","row"+(i===0&&!ordemFixa&&p[1]?" top1":""));r.appendChild(el("span",null,p[0]));
+    var pct=base?" ("+Math.round(p[1]/base*100)+"%)":"";r.appendChild(el("span","n",p[1]+pct));
+    var t=el("div","t"),b=el("i");b.style.width=(p[1]/max*100)+"%";t.appendChild(b);r.appendChild(t);c.appendChild(r)});
+  return c;
+}
+// Pessoas da resposta (formato novo) ou uma por faixa (respostas antigas).
+function juntar(l){var o=[];l.forEach(function(x){x=(x==="Futsal"||x==="Futebol")?"Futsal/Futebol":x;if(o.indexOf(x)<0)o.push(x)});return o}
+function pessoasDe(r){var ps=(r.pessoas&&r.pessoas.length)?r.pessoas:(r.faixas||[]).map(function(f){return{faixa:f,atividades:(r.atividades||{})[f]||[]}});
+  return ps.map(function(p){return{faixa:p.faixa,atividades:juntar(p.atividades)}})}
+function descrever(r){return pessoasDe(r).map(function(p){return p.faixa+": "+(p.atividades.join(", ")||"–")})}
+function csv(rs){
+  var cab=["Data","Nº de pessoas","Pessoas e atividades","Outra atividade","Dias","Períodos","Nome","Bloco/apto"];
+  var q=function(v){v=String(v==null?"":v);return'"'+v.replace(/"/g,'""')+'"'};
+  var linhas=[cab.map(q).join(";")];
+  rs.forEach(function(r){linhas.push([new Date(r.criado_em).toLocaleString("pt-BR"),pessoasDe(r).length,
+    descrever(r).join(" | "),
+    r.outra,r.dias.join(", "),r.periodos.join(", "),r.nome,r.unidade].map(q).join(";"))});
+  var b=new Blob(["﻿"+linhas.join("\r\n")],{type:"text/csv;charset=utf-8"});
+  var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="pesquisa-{{SLUG}}-"+new Date().toISOString().slice(0,10)+".csv";document.body.appendChild(a);a.click();a.remove();
+}
+function pedirChave(msg){
+  app.innerHTML="";app.appendChild(el("p","msg",msg));
+  var f=el("form","k"),i=el("input");i.placeholder="Cole a chave de acesso";i.type="password";f.appendChild(i);
+  var b=el("button","btn","Entrar");f.appendChild(b);f.onsubmit=function(e){e.preventDefault();location.hash="k="+encodeURIComponent(i.value.trim());carregar()};app.appendChild(f);
+}
+function render(rs,admin){
+  app.innerHTML="";
+  var bt=el("div","btns"),b1=el("button","btn","Baixar planilha (Excel/Sheets)"),b2=el("button","btn line","Atualizar");
+  b1.onclick=function(){csv(rs)};b2.onclick=carregar;bt.appendChild(b1);bt.appendChild(b2);app.appendChild(bt);
+  var porIp={};rs.forEach(function(r){if(r.ip)porIp[r.ip]=(porIp[r.ip]||0)+1});
+  var faixas=[],dias=[],per=[],atv=[],porFaixa={};
+  rs.forEach(function(r){dias=dias.concat(r.dias);per=per.concat(r.periodos);
+    pessoasDe(r).forEach(function(p){faixas.push(p.faixa);(porFaixa[p.faixa]=porFaixa[p.faixa]||[]).push.apply(porFaixa[p.faixa],p.atividades);
+      p.atividades.forEach(function(a){atv.push(a)})})});
+  var k=el("div","kpis");[[rs.length,"respostas"],[faixas.length,"pessoas interessadas"],[rs.filter(function(r){return r.outra}).length,"sugeriram outra atividade"],[rs.filter(function(r){return r.ip&&porIp[r.ip]>1}).length,"vieram de uma conexão repetida (veja a tabela)"]]
+    .forEach(function(x){var d=el("div","kpi");d.appendChild(el("b",null,x[0]));d.appendChild(el("span",null,x[1]));k.appendChild(d)});app.appendChild(k);
+  var g=el("div","grid");
+  g.appendChild(card("Atividades mais pedidas (nº de pessoas)",contar(atv)));
+  g.appendChild(card("Pessoas por faixa etária",contar(faixas),0,["Crianças de 4 a 6 anos","Crianças de 7 a 11 anos","Adolescentes de 12 a 17 anos","Adultos","60 anos ou mais"]));
+  g.appendChild(card("Dias preferidos",contar(dias),rs.length,["Segunda","Terça","Quarta","Quinta","Sexta"]));
+  g.appendChild(card("Períodos preferidos",contar(per),rs.length,["Manhã","Tarde","Noite"]));
+  ["Crianças de 4 a 6 anos","Crianças de 7 a 11 anos","Adolescentes de 12 a 17 anos","Adultos","60 anos ou mais"].forEach(function(f){
+    if(porFaixa[f])g.appendChild(card("Atividades · "+f,contar(porFaixa[f])))});
+  app.appendChild(g);
+  var outras=rs.filter(function(r){return r.outra});
+  if(outras.length){var c=el("section","card");c.appendChild(el("h2",null,"Outras atividades sugeridas"));var u=el("ul");outras.forEach(function(r){u.appendChild(el("li",null,r.outra))});c.appendChild(u);app.appendChild(c)}
+  var c2=el("section","card");c2.appendChild(el("h2",null,"Todas as respostas"));
+  if(!rs.length)c2.appendChild(el("p","vazio","Sem respostas ainda."));else{
+  var w=el("div","tab"),t=el("table"),h=el("tr");["Data","Nome","Bloco/apto","Pessoas e atividades","Dias","Período","Conexão"].concat(admin?[""]:[]).forEach(function(x){h.appendChild(el("th",null,x))});
+  var th=el("thead");th.appendChild(h);t.appendChild(th);var tb=el("tbody");
+  rs.slice().reverse().forEach(function(r){var tr=el("tr");
+    [new Date(r.criado_em).toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"}),r.nome,r.unidade,
+     descrever(r).join(" · ")+(r.outra?" · Outra: "+r.outra:""),
+     r.dias.join(", "),r.periodos.join(", "),r.ip&&porIp[r.ip]>1?"Mesma de outras "+(porIp[r.ip]-1):"Única"].forEach(function(v){tr.appendChild(el("td",null,v||"–"))});
+    if(admin){var td=el("td"),x=el("button","del","Apagar");x.title="Apagar esta resposta e liberar o apartamento para responder de novo";
+    x.onclick=function(){if(!confirm("Apagar a resposta de "+(r.unidade||"sem apartamento")+"? Ela sai dos resultados."))return;
+      fetch("/api/interesse/"+PESQUISA+"/respostas?id="+r.id,{method:"DELETE",headers:{authorization:"Bearer "+chave()}}).then(function(z){if(z.ok)carregar();else alert("Não foi possível apagar.")})};
+    td.appendChild(x);tr.appendChild(td)}tb.appendChild(tr)});
+  t.appendChild(tb);w.appendChild(t);c2.appendChild(w)}
+  app.appendChild(c2);
+  document.getElementById("sub").textContent="Atualizado às "+new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})+". Página interna, não compartilhe o link.";
+}
+function carregar(){
+  var k=chave();if(!k)return pedirChave("Para ver os resultados, use o link com a chave de acesso.");
+  fetch("/api/interesse/"+PESQUISA+"/respostas",{headers:{authorization:"Bearer "+k},cache:"no-store"})
+  .then(function(r){if(r.status===401)throw"chave";if(!r.ok)throw"rede";return r.json()})
+  .then(function(d){render(d.respostas||[],!!d.admin)})
+  .catch(function(e){e==="chave"?pedirChave("Chave inválida. Confira o link."):(app.innerHTML="",app.appendChild(el("p","msg","Não foi possível carregar agora. Tente atualizar a página.")))});
+}
+carregar();
+})();
+</script></body></html>
