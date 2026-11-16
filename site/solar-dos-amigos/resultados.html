@@ -57,8 +57,9 @@ function card(titulo,pares,base,ordemFixa){
   return c;
 }
 // Pessoas da resposta (formato novo) ou uma por faixa (respostas antigas).
-function pessoasDe(r){if(r.pessoas&&r.pessoas.length)return r.pessoas;
-  return(r.faixas||[]).map(function(f){return{faixa:f,atividades:(r.atividades||{})[f]||[]}})}
+function juntar(l){var o=[];l.forEach(function(x){x=(x==="Futsal"||x==="Futebol")?"Futsal/Futebol":x;if(o.indexOf(x)<0)o.push(x)});return o}
+function pessoasDe(r){var ps=(r.pessoas&&r.pessoas.length)?r.pessoas:(r.faixas||[]).map(function(f){return{faixa:f,atividades:(r.atividades||{})[f]||[]}});
+  return ps.map(function(p){return{faixa:p.faixa,atividades:juntar(p.atividades)}})}
 function descrever(r){return pessoasDe(r).map(function(p){return p.faixa+": "+(p.atividades.join(", ")||"–")})}
 function csv(rs){
   var cab=["Data","Nº de pessoas","Pessoas e atividades","Outra atividade","Dias","Períodos","Nome","Bloco/apto"];
