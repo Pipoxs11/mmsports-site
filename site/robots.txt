@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /api/
-Disallow: /solar-dos-amigos/
 Sitemap: https://mmsports.me/sitemap.xml

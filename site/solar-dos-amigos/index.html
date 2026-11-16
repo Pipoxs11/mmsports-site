@@ -96,7 +96,13 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
 </div></header>
 
 <main><div class="in">
-<form id="f" novalidate>
+<section id="trava" class="fim" hidden>
+  <h2>Formulário exclusivo para moradores</h2>
+  <p>Esta pesquisa é só para os moradores do Condomínio Solar dos Amigos. Abra pelo link enviado no grupo do condomínio.</p>
+  <a class="btn line" href="/">Conhecer a MM Sports</a>
+</section>
+<p id="carregando" class="dica">Carregando...</p>
+<form id="f" novalidate hidden>
   <input class="hp" type="text" name="site" tabindex="-1" autocomplete="off" aria-hidden="true">
 
   <section data-step="1" class="on">
@@ -142,7 +148,7 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
 </form>
 </div></main>
 
-<div class="acoes" id="acoes"><div class="in">
+<div class="acoes" id="acoes" hidden><div class="in">
   <button class="btn vol" type="button" id="voltar" hidden aria-label="Voltar">Voltar</button>
   <button class="btn gol" type="button" id="seguir">Continuar</button>
 </div></div>
@@ -160,6 +166,7 @@ var FAIXAS=[
 ];
 var DIAS=["Seg","Ter","Qua","Qui","Sex","Sáb"], DIAS_N={Seg:"Segunda",Ter:"Terça",Qua:"Quarta",Qui:"Quinta",Sex:"Sexta","Sáb":"Sábado"};
 var PERIODOS=[["Manhã","7h às 12h"],["Tarde","12h às 18h"],["Noite","18h às 21h30"]];
+var ACESSO=new URLSearchParams(location.search).get("c")||"";
 var f=document.getElementById("f"),erro=document.getElementById("erro"),seguir=document.getElementById("seguir"),voltar=document.getElementById("voltar");
 var passo=1,total=4;
 
@@ -216,7 +223,7 @@ function validar(n){
 function dados(){
   var atv={};document.querySelectorAll(".grupo").forEach(function(d){atv[d.dataset.faixa]=marcados("atv",d)});
   return{faixas:marcados("faixa"),atividades:atv,outra:f.outra.value,dias:marcados("dia"),periodos:marcados("periodo"),
-    nome:f.nome.value,unidade:f.unidade.value,whatsapp:f.whatsapp.value,site:f.site.value};
+    acesso:ACESSO,nome:f.nome.value,unidade:f.unidade.value,whatsapp:f.whatsapp.value,site:f.site.value};
 }
 
 function textoWhats(d){
@@ -250,7 +257,12 @@ voltar.addEventListener("click",function(){if(passo>1)mostrar(passo-1)});
 f.addEventListener("change",function(){erro.textContent=""});
 f.addEventListener("submit",function(e){e.preventDefault()});
 document.getElementById("denovo").addEventListener("click",function(){f.reset();document.getElementById("grupos").innerHTML="";mostrar(1)});
-document.getElementById("compartilhar").href="https://wa.me/?text="+encodeURIComponent("Responde aqui, é rapidinho: a pesquisa das aulas de esporte do Solar dos Amigos. Leva menos de 1 minuto! "+LINK);
+document.getElementById("compartilhar").href="https://wa.me/?text="+encodeURIComponent("Responde aqui, é rapidinho: a pesquisa das aulas de esporte do Solar dos Amigos. Leva menos de 1 minuto! "+LINK+"?c="+encodeURIComponent(ACESSO));
+function travar(){document.getElementById("carregando").hidden=true;document.getElementById("trava").hidden=false;
+  document.querySelector(".bar").hidden=true;document.getElementById("passo").hidden=true;document.getElementById("intro").hidden=true}
+function liberar(){document.getElementById("carregando").hidden=true;f.hidden=false;document.getElementById("acoes").hidden=false}
+if(!ACESSO)travar();else fetch("/api/interesse/"+PESQUISA+"/acesso?c="+encodeURIComponent(ACESSO),{cache:"no-store"})
+  .then(function(r){r.ok?liberar():(r.status===401?travar():liberar())}).catch(liberar);
 })();
 </script>
 </body></html>
