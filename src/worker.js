@@ -46,6 +46,16 @@ const texto = (v, max) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const lista = (v, maxItens, maxTam) =>
   Array.isArray(v) ? [...new Set(v.filter((x) => typeof x === "string").map((x) => x.trim().slice(0, maxTam)).filter(Boolean))].slice(0, maxItens) : [];
 
+// Chave do apartamento: "Bloco A, ap. 042" e "a / 42" viram "A|42".
+function chaveUnidade(bloco, apto) {
+  const n = (v) =>
+    v.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase()
+      .replace(/\b(BLOCO|BLC|BL|TORRE|APARTAMENTO|APTO|AP)\b\.?/g, "")
+      .replace(/[^A-Z0-9]/g, "").replace(/^0+(?=.)/, "");
+  const b = n(bloco), a = n(apto);
+  return b && a ? b + "|" + a : "";
+}
+
 function limpar(d) {
   const atividades = {};
   if (d && typeof d.atividades === "object" && !Array.isArray(d.atividades)) {
@@ -61,7 +71,9 @@ function limpar(d) {
     dias: lista(d.dias, 7, 20),
     periodos: lista(d.periodos, 4, 40),
     nome: texto(d.nome, 80),
-    unidade: texto(d.unidade, 40),
+    bloco: texto(d.bloco, 20),
+    apto: texto(d.apto, 10),
+    unidade: [texto(d.bloco, 20) && "Bloco " + texto(d.bloco, 20).replace(/^(bloco|torre)\s*/i, ""), texto(d.apto, 10) && "ap. " + texto(d.apto, 10)].filter(Boolean).join(", "),
     whatsapp: texto(d.whatsapp, 30),
   };
 }
@@ -95,14 +107,23 @@ export default {
       if (d && d.site) return json({ ok: true }); // campo-isca contra robôs
       const r = limpar(d);
       if (!r.faixas.length) return json({ erro: "Escolha ao menos uma faixa etária." }, 400);
-      await stub.salvar(r);
+      const chave = chaveUnidade(r.bloco, r.apto);
+      if (!chave) return json({ erro: "Informe o bloco e o apartamento." }, 400);
+      if (!(await stub.salvar(chave, r)))
+        return json({ erro: "Este apartamento já respondeu.", codigo: "repetido" }, 409);
       return json({ ok: true });
     }
 
-    if (request.method !== "GET") return json({ erro: "Use GET." }, 405, { allow: "GET" });
+    if (request.method !== "GET" && request.method !== "DELETE") return json({ erro: "Use GET." }, 405, { allow: "GET, DELETE" });
     const chave = (request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "") || url.searchParams.get("k") || "";
     const h = chave ? await sha256(chave) : "";
     if (!h || !Object.values(pesquisa.leitores).some((x) => iguais(h, x))) return json({ erro: "Chave inválida." }, 401);
+    if (request.method === "DELETE") {
+      const id = Number(url.searchParams.get("id"));
+      if (!Number.isInteger(id) || id < 1) return json({ erro: "Resposta inválida." }, 400);
+      await stub.apagar(id);
+      return json({ ok: true });
+    }
     return json({ pesquisa: slug, respostas: await stub.listar() });
   },
 };
@@ -113,10 +134,24 @@ export class Interesse extends DurableObject {
     ctx.storage.sql.exec(
       "CREATE TABLE IF NOT EXISTS respostas (id INTEGER PRIMARY KEY AUTOINCREMENT, criado_em TEXT NOT NULL, dados TEXT NOT NULL)"
     );
+    // v2: uma resposta por apartamento (respostas antigas ficam com unidade NULL).
+    const cols = ctx.storage.sql.exec("PRAGMA table_info(respostas)").toArray().map((c) => c.name);
+    if (!cols.includes("unidade")) ctx.storage.sql.exec("ALTER TABLE respostas ADD COLUMN unidade TEXT");
+    ctx.storage.sql.exec("CREATE UNIQUE INDEX IF NOT EXISTS respostas_unidade ON respostas (unidade)");
   }
 
-  salvar(r) {
-    this.ctx.storage.sql.exec("INSERT INTO respostas (criado_em, dados) VALUES (?, ?)", new Date().toISOString(), JSON.stringify(r));
+  // Devolve false se o apartamento já respondeu.
+  salvar(unidade, r) {
+    const ja = this.ctx.storage.sql.exec("SELECT 1 FROM respostas WHERE unidade = ?", unidade).toArray().length;
+    if (ja) return false;
+    this.ctx.storage.sql.exec(
+      "INSERT INTO respostas (criado_em, dados, unidade) VALUES (?, ?, ?)", new Date().toISOString(), JSON.stringify(r), unidade
+    );
+    return true;
+  }
+
+  apagar(id) {
+    this.ctx.storage.sql.exec("DELETE FROM respostas WHERE id = ?", id);
   }
 
   listar() {

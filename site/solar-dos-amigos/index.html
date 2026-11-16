@@ -62,6 +62,7 @@ label.campo span{display:block;font-weight:600;color:var(--gray);font-size:.85re
 input[type=text],input[type=tel]{display:block;width:100%;margin-top:6px;padding:14px 14px;font:inherit;font-size:16px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--navy)}
 input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:none}
 .sub{margin-top:22px}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .priv{font-size:.82rem;color:var(--gray);margin-top:4px}
 .priv a{color:var(--blue)}
 .erro{color:#B42318;font-weight:700;min-height:1.5em;margin:6px 0 0}
@@ -128,10 +129,13 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
   </section>
 
   <section data-step="4">
-    <h2>Quer ser avisado da aula experimental?</h2>
-    <p class="dica">Tudo opcional. Se preferir, é só tocar em Enviar.</p>
+    <h2>Para fechar: qual é o seu apartamento?</h2>
+    <p class="dica">Vale uma resposta por apartamento, por isso pedimos bloco e número.</p>
+    <div class="dupla"><label class="campo">Bloco ou torre<input type="text" name="bloco" maxlength="20" autocapitalize="characters" placeholder="Ex.: B"></label>
+    <label class="campo">Apartamento<input type="text" name="apto" maxlength="10" inputmode="numeric" placeholder="Ex.: 42"></label></div>
+    <h2 class="sub">Quer ser avisado da aula experimental?</h2>
+    <p class="dica">Opcional.</p>
     <label class="campo">Seu nome<input type="text" name="nome" maxlength="80" autocomplete="name"></label>
-    <label class="campo">Bloco e apartamento<input type="text" name="unidade" maxlength="40" placeholder="Ex.: Bloco B, ap. 42"></label>
     <label class="campo">WhatsApp<input type="tel" name="whatsapp" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="(11) 90000-0000"></label>
     <p class="priv">Usamos seus dados só para organizar as turmas do Solar dos Amigos e falar sobre as aulas. <a href="/privacidade.html">Privacidade</a>.</p>
   </section>
@@ -141,7 +145,6 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
     <h2>Obrigado!</h2>
     <p>Sua resposta foi registrada. Com ela, a MM Sports e a administração montam a grade de aulas do Solar dos Amigos.</p>
     <a class="btn gol" id="compartilhar" href="#" target="_blank" rel="noopener">Enviar para um vizinho</a>
-    <button class="btn line" type="button" id="denovo">Responder por outra unidade</button>
     <a class="btn line" href="https://instagram.com/mmsports.me" target="_blank" rel="noopener">Ver a MM Sports no Instagram</a>
   </section>
   <p class="erro" id="erro" role="alert"></p>
@@ -217,13 +220,14 @@ function validar(n){
     if(falta&&!f.outra.value.trim())return"Escolha ao menos uma atividade para cada idade (ou escreva outra).";}
   if(n===3&&!marcados("dia").length)return"Marque ao menos um dia.";
   if(n===3&&!marcados("periodo").length)return"Marque ao menos um período.";
+  if(n===4&&(!f.bloco.value.trim()||!f.apto.value.trim()))return"Informe o bloco e o número do apartamento.";
   return"";
 }
 
 function dados(){
   var atv={};document.querySelectorAll(".grupo").forEach(function(d){atv[d.dataset.faixa]=marcados("atv",d)});
   return{faixas:marcados("faixa"),atividades:atv,outra:f.outra.value,dias:marcados("dia"),periodos:marcados("periodo"),
-    acesso:ACESSO,nome:f.nome.value,unidade:f.unidade.value,whatsapp:f.whatsapp.value,site:f.site.value};
+    acesso:ACESSO,nome:f.nome.value,bloco:f.bloco.value,apto:f.apto.value,whatsapp:f.whatsapp.value,site:f.site.value};
 }
 
 function textoWhats(d){
@@ -231,16 +235,17 @@ function textoWhats(d){
   d.faixas.forEach(function(x){l.push("• "+x+": "+((d.atividades[x]||[]).join(", ")||"sem preferência"))});
   if(d.outra)l.push("• Outra: "+d.outra);
   l.push("• Dias: "+d.dias.join(", "));l.push("• Período: "+d.periodos.join(", "));
-  if(d.nome||d.unidade)l.push("• "+[d.nome,d.unidade].filter(Boolean).join(", "));
+  l.push("• "+[d.nome,"Bloco "+d.bloco+", ap. "+d.apto].filter(Boolean).join(", "));
   return l.join("\n");
 }
 
 function enviar(){
   var d=dados();seguir.disabled=true;seguir.textContent="Enviando...";
   fetch("/api/interesse/"+PESQUISA,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(d)})
-  .then(function(r){if(!r.ok)throw new Error(r.status);return r.json()})
+  .then(function(r){if(r.status===409)throw"repetido";if(!r.ok)throw new Error(r.status);return r.json()})
   .then(function(){try{localStorage.setItem("mm-"+PESQUISA,"1")}catch(e){}mostrar(5)})
-  .catch(function(){
+  .catch(function(x){
+    if(x==="repetido"){erro.textContent="O apartamento "+f.apto.value.trim()+" do bloco "+f.bloco.value.trim().toUpperCase()+" já respondeu a pesquisa. Se for engano, fale com a síndica.";erro.scrollIntoView({block:"center",behavior:"smooth"});return}
     erro.innerHTML="";erro.appendChild(document.createTextNode("Não conseguimos enviar agora. Tente de novo ou "));
     var a=document.createElement("a");a.href="https://wa.me/"+WA+"?text="+encodeURIComponent(textoWhats(d));a.target="_blank";a.rel="noopener";a.textContent="mande pelo WhatsApp";
     erro.appendChild(a);erro.appendChild(document.createTextNode("."));
@@ -249,14 +254,13 @@ function enviar(){
 }
 
 seguir.addEventListener("click",function(){
-  var e=validar(passo);if(e){erro.textContent=e;return}
+  var e=validar(passo);if(e){erro.textContent=e;erro.scrollIntoView({block:"center",behavior:"smooth"});return}
   if(passo===1)montarGrupos();
   if(passo<total)mostrar(passo+1);else enviar();
 });
 voltar.addEventListener("click",function(){if(passo>1)mostrar(passo-1)});
 f.addEventListener("change",function(){erro.textContent=""});
 f.addEventListener("submit",function(e){e.preventDefault()});
-document.getElementById("denovo").addEventListener("click",function(){f.reset();document.getElementById("grupos").innerHTML="";mostrar(1)});
 document.getElementById("compartilhar").href="https://wa.me/?text="+encodeURIComponent("Responde aqui, é rapidinho: a pesquisa das aulas de esporte do Solar dos Amigos. Leva menos de 1 minuto! "+LINK+"?c="+encodeURIComponent(ACESSO));
 function travar(){document.getElementById("carregando").hidden=true;document.getElementById("trava").hidden=false;
   document.querySelector(".bar").hidden=true;document.getElementById("passo").hidden=true;document.getElementById("intro").hidden=true}
