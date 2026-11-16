@@ -34,6 +34,7 @@ main{padding:20px 16px 40px}
 th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
 th{font-weight:800;white-space:nowrap}
 .msg{font-weight:700}
+.del{border:1px solid var(--line);background:#fff;border-radius:8px;padding:4px 10px;font:700 .8rem Figtree,sans-serif;color:#B42318;cursor:pointer}
 form.k{display:flex;gap:10px;flex-wrap:wrap}form.k input{flex:1;min-width:220px;padding:12px;font:inherit;border:2px solid var(--line);border-radius:12px}
 </style></head><body>
 <header class="top"><div class="in"><div class="brand"><img src="/logo.svg" alt="">MM Sports</div>
@@ -74,11 +75,12 @@ function render(rs){
   app.innerHTML="";
   var bt=el("div","btns"),b1=el("button","btn","Baixar planilha (Excel/Sheets)"),b2=el("button","btn line","Atualizar");
   b1.onclick=function(){csv(rs)};b2.onclick=carregar;bt.appendChild(b1);bt.appendChild(b2);app.appendChild(bt);
+  var porIp={};rs.forEach(function(r){if(r.ip)porIp[r.ip]=(porIp[r.ip]||0)+1});
   var faixas=[],dias=[],per=[],atv=[],porFaixa={},contatos=rs.filter(function(r){return r.whatsapp||r.nome});
   rs.forEach(function(r){faixas=faixas.concat(r.faixas);dias=dias.concat(r.dias);per=per.concat(r.periodos);
     Object.keys(r.atividades||{}).forEach(function(k){(porFaixa[k]=porFaixa[k]||[]).push.apply(porFaixa[k],r.atividades[k]);
       r.atividades[k].forEach(function(a){atv.push(a)})})});
-  var k=el("div","kpis");[[rs.length,"respostas (unidades)"],[faixas.length,"pessoas interessadas (por faixa)"],[contatos.length,"deixaram contato"],[rs.filter(function(r){return r.outra}).length,"sugeriram outra atividade"]]
+  var k=el("div","kpis");[[rs.length,"respostas (unidades)"],[faixas.length,"pessoas interessadas (por faixa)"],[contatos.length,"deixaram contato"],[rs.filter(function(r){return r.outra}).length,"sugeriram outra atividade"],[rs.filter(function(r){return r.ip&&porIp[r.ip]>1}).length,"vieram de uma conexão repetida (veja a tabela)"]]
     .forEach(function(x){var d=el("div","kpi");d.appendChild(el("b",null,x[0]));d.appendChild(el("span",null,x[1]));k.appendChild(d)});app.appendChild(k);
   var g=el("div","grid");
   g.appendChild(card("Atividades mais pedidas (geral)",contar(atv)));
@@ -92,12 +94,16 @@ function render(rs){
   if(outras.length){var c=el("section","card");c.appendChild(el("h2",null,"Outras atividades sugeridas"));var u=el("ul");outras.forEach(function(r){u.appendChild(el("li",null,r.outra))});c.appendChild(u);app.appendChild(c)}
   var c2=el("section","card");c2.appendChild(el("h2",null,"Todas as respostas"));
   if(!rs.length)c2.appendChild(el("p","vazio","Sem respostas ainda."));else{
-  var w=el("div","tab"),t=el("table"),h=el("tr");["Data","Nome","Bloco/apto","WhatsApp","Faixas e atividades","Dias","Período"].forEach(function(x){h.appendChild(el("th",null,x))});
+  var w=el("div","tab"),t=el("table"),h=el("tr");["Data","Nome","Bloco/apto","WhatsApp","Faixas e atividades","Dias","Período","Conexão",""].forEach(function(x){h.appendChild(el("th",null,x))});
   var th=el("thead");th.appendChild(h);t.appendChild(th);var tb=el("tbody");
   rs.slice().reverse().forEach(function(r){var tr=el("tr");
     [new Date(r.criado_em).toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"}),r.nome,r.unidade,r.whatsapp,
      Object.keys(r.atividades||{}).map(function(k){return k+": "+(r.atividades[k].join(", ")||"–")}).join(" · ")+(r.outra?" · Outra: "+r.outra:""),
-     r.dias.join(", "),r.periodos.join(", ")].forEach(function(v){tr.appendChild(el("td",null,v||"–"))});tb.appendChild(tr)});
+     r.dias.join(", "),r.periodos.join(", "),r.ip&&porIp[r.ip]>1?"Mesma de outras "+(porIp[r.ip]-1):"Única"].forEach(function(v){tr.appendChild(el("td",null,v||"–"))});
+    var td=el("td"),x=el("button","del","Apagar");x.title="Apagar esta resposta e liberar o apartamento para responder de novo";
+    x.onclick=function(){if(!confirm("Apagar a resposta de "+(r.unidade||"sem apartamento")+"? Ela sai dos resultados."))return;
+      fetch("/api/interesse/"+PESQUISA+"/respostas?id="+r.id,{method:"DELETE",headers:{authorization:"Bearer "+chave()}}).then(function(z){if(z.ok)carregar();else alert("Não foi possível apagar.")})};
+    td.appendChild(x);tr.appendChild(td);tb.appendChild(tr)});
   t.appendChild(tb);w.appendChild(t);c2.appendChild(w)}
   app.appendChild(c2);
   document.getElementById("sub").textContent="Atualizado às "+new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})+". Página interna, não compartilhe o link.";
