@@ -1,10 +1,18 @@
 // Publicação no Cloudflare (Workers com arquivos estáticos).
-// Publica só a pasta `site`, igual ao netlify.toml.
+// Publica a pasta `site`, igual ao netlify.toml. O src/worker.js só atende
+// /api/interesse/... (pesquisas de interesse dos condomínios); todo o resto
+// continua sendo arquivo estático.
 {
   "name": "mmsports-site",
   "compatibility_date": "2026-10-01",
+  "main": "src/worker.js",
   "assets": {
     "directory": "./site",
+    "binding": "ASSETS",
     "not_found_handling": "404-page"
-  }
+  },
+  "durable_objects": {
+    "bindings": [{ "name": "INTERESSE", "class_name": "Interesse" }]
+  },
+  "migrations": [{ "tag": "v1", "new_sqlite_classes": ["Interesse"] }]
 }
