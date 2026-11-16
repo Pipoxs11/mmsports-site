@@ -2,7 +2,7 @@
 <title>Solar dos Amigos | Quais aulas você quer no condomínio? | MM Sports</title>
 <meta name="description" content="Pesquisa rápida para os moradores do Solar dos Amigos: escolha as atividades, as idades e os horários que você gostaria de ter no condomínio. Leva menos de 1 minuto.">
 <meta name="robots" content="noindex">
-<meta name="versao" content="2026-11-16-dias-periodo">
+<meta name="versao" content="2026-11-16-modelo">
 <meta name="theme-color" content="#0E1B3D">
 <meta property="og:title" content="Solar dos Amigos: quais aulas você quer no condomínio?">
 <meta property="og:description" content="Responda em menos de 1 minuto, só tocando nas opções. MM Sports, esporte no condomínio.">
@@ -69,6 +69,9 @@ h2{font-size:1.45rem;margin-bottom:6px}
 .grupo h3::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--gol)}
 .grupo .chip{min-height:44px;padding:9px 14px;border-radius:999px;background:var(--paper);font-size:.95rem}
 .grupo .chip .ck{display:none}
+.grupo .chip.destaque{border-color:var(--gol)}
+.grupo .chip.destaque span::before{content:"★ ";color:var(--gol)}
+.grupo .chip.destaque:has(input:checked) span::before{color:#fff}
 label.campo{display:block;font-weight:700;margin:0 0 14px}
 label.campo span{display:block;font-weight:600;color:var(--gray);font-size:.85rem}
 input[type=text],input[type=tel]{display:block;width:100%;margin-top:6px;padding:14px 14px;font:inherit;font-size:16px;border:2px solid var(--line);border-radius:12px;background:#fff;color:var(--navy)}
@@ -169,13 +172,7 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
 <script>
 (function(){
 var PESQUISA="solar-dos-amigos", WA="5511953289472", LINK="https://mmsports.me/solar-dos-amigos/";
-var FAIXAS=[
-  {id:"Crianças de 4 a 6 anos",t:"Crianças",p:"Criança",s:"4 a 6 anos",a:["Futsal/Futebol","Judô","Ballet e dança","Ginástica e recreação"]},
-  {id:"Crianças de 7 a 11 anos",t:"Crianças",p:"Criança",s:"7 a 11 anos",a:["Futsal/Futebol","Vôlei","Basquete","Judô","Dança","Ginástica"]},
-  {id:"Adolescentes de 12 a 17 anos",t:"Adolescentes",p:"Adolescente",s:"12 a 17 anos",a:["Vôlei","Futsal/Futebol","Basquete","Judô e lutas","Danças e ritmos","Funcional"]},
-  {id:"Adultos",t:"Adultos",p:"Adulto",s:"18 a 59 anos",a:["Pilates","Funcional","Danças e ritmos","Vôlei","Futsal/Futebol","Judô e lutas","Alongamento","Hidroginástica"]},
-  {id:"60 anos ou mais",t:"60 anos ou mais",p:"Pessoa",s:"Terceira idade",a:["Ginástica","Hidroginástica","Pilates","Alongamento","Danças e ritmos","Vôlei adaptado"]}
-];
+var FAIXAS=[{"id": "Crianças de 4 a 6 anos", "t": "Crianças", "p": "Criança", "s": "4 a 6 anos", "a": ["Futsal/Futebol", "Judô", "Ballet e dança", "Ginástica e recreação"]}, {"id": "Crianças de 7 a 11 anos", "t": "Crianças", "p": "Criança", "s": "7 a 11 anos", "a": ["Futsal/Futebol", "Vôlei", "Basquete", "Judô", "Dança", "Ginástica"]}, {"id": "Adolescentes de 12 a 17 anos", "t": "Adolescentes", "p": "Adolescente", "s": "12 a 17 anos", "a": ["Vôlei", "Futsal/Futebol", "Basquete", "Judô e lutas", "Danças e ritmos", "Funcional"]}, {"id": "Adultos", "t": "Adultos", "p": "Adulto", "s": "18 a 59 anos", "a": ["Pilates", "Funcional", "Danças e ritmos", "Vôlei", "Futsal/Futebol", "Judô e lutas", "Alongamento", "Hidroginástica"]}, {"id": "60 anos ou mais", "t": "60 anos ou mais", "p": "Pessoa", "s": "Terceira idade", "a": ["Ginástica", "Hidroginástica", "Pilates", "Alongamento", "Danças e ritmos", "Vôlei adaptado"]}];
 var DIAS=["Seg","Ter","Qua","Qui","Sex"], DIAS_N={Seg:"Segunda",Ter:"Terça",Qua:"Quarta",Qui:"Quinta",Sex:"Sexta"}, MAX_DIAS=2;
 var PERIODOS=[["Manhã","7h às 12h"],["Tarde","12h às 18h"],["Noite","18h às 21h30"]];
 var ACESSO=new URLSearchParams(location.search).get("c")||"";
@@ -221,7 +218,7 @@ function montarGrupos(){
       var h=document.createElement("h3");
       h.textContent=qtd[x.id]>1?x.p+" "+i+" · "+x.s:(x.id==="60 anos ou mais"?x.t:x.p+" · "+x.s);d.appendChild(h);
       var w=document.createElement("div");w.className="chips";
-      x.a.forEach(function(a){var c=chip("atv",a,a);if((antes[chave]||[]).indexOf(a)>=0)c.querySelector("input").checked=true;w.appendChild(c)});
+      x.a.forEach(function(a){var c=chip("atv",a,a);if((x.d||[]).indexOf(a)>=0)c.classList.add("destaque");if((antes[chave]||[]).indexOf(a)>=0)c.querySelector("input").checked=true;w.appendChild(c)});
       d.appendChild(w);g.appendChild(d);
     }
   });

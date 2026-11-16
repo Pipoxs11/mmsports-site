@@ -20,6 +20,20 @@ const PESQUISAS = {
       sindica: { sha256: "d2ce02b2a1241684f193d203b1be1564fbcea1e3a6d486cdf7cca62f36a68008" },
     },
   },
+  "lavance-morumbi": {
+    acessoSha256: "8502390b7ce38aabda1d75699069db7a0c02b9978ec4442c95fa3421e935f0a6",
+    leitores: {
+      felipe: { sha256: "ef38d068460e344a48e2c615063b5fee2fc143094b2e1ed1e91c672493b1fa4b", admin: true },
+      sindico: { sha256: "5e4aaf35e001f5d266624929ef5bc659e2297a84a404605f0cbf4ebaf4eb25cd" },
+    },
+  },
+  "lake-tahoe": {
+    acessoSha256: "16c52a7840e04a85ccc152a5c469b8fc7bd47019641fe3bddccf264c09accc50",
+    leitores: {
+      felipe: { sha256: "ef38d068460e344a48e2c615063b5fee2fc143094b2e1ed1e91c672493b1fa4b", admin: true },
+      sindico: { sha256: "4692c2bb32c1629df1ea8dab5c3d39641f95d0a0bf58e907267d9d2b8ed8b31a" },
+    },
+  },
 };
 
 const LIMITE_CORPO = 8 * 1024;
