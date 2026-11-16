@@ -71,7 +71,7 @@ function pedirChave(msg){
   var f=el("form","k"),i=el("input");i.placeholder="Cole a chave de acesso";i.type="password";f.appendChild(i);
   var b=el("button","btn","Entrar");f.appendChild(b);f.onsubmit=function(e){e.preventDefault();location.hash="k="+encodeURIComponent(i.value.trim());carregar()};app.appendChild(f);
 }
-function render(rs){
+function render(rs,admin){
   app.innerHTML="";
   var bt=el("div","btns"),b1=el("button","btn","Baixar planilha (Excel/Sheets)"),b2=el("button","btn line","Atualizar");
   b1.onclick=function(){csv(rs)};b2.onclick=carregar;bt.appendChild(b1);bt.appendChild(b2);app.appendChild(bt);
@@ -94,16 +94,16 @@ function render(rs){
   if(outras.length){var c=el("section","card");c.appendChild(el("h2",null,"Outras atividades sugeridas"));var u=el("ul");outras.forEach(function(r){u.appendChild(el("li",null,r.outra))});c.appendChild(u);app.appendChild(c)}
   var c2=el("section","card");c2.appendChild(el("h2",null,"Todas as respostas"));
   if(!rs.length)c2.appendChild(el("p","vazio","Sem respostas ainda."));else{
-  var w=el("div","tab"),t=el("table"),h=el("tr");["Data","Nome","Bloco/apto","WhatsApp","Faixas e atividades","Dias","Período","Conexão",""].forEach(function(x){h.appendChild(el("th",null,x))});
+  var w=el("div","tab"),t=el("table"),h=el("tr");["Data","Nome","Bloco/apto","WhatsApp","Faixas e atividades","Dias","Período","Conexão"].concat(admin?[""]:[]).forEach(function(x){h.appendChild(el("th",null,x))});
   var th=el("thead");th.appendChild(h);t.appendChild(th);var tb=el("tbody");
   rs.slice().reverse().forEach(function(r){var tr=el("tr");
     [new Date(r.criado_em).toLocaleString("pt-BR",{dateStyle:"short",timeStyle:"short"}),r.nome,r.unidade,r.whatsapp,
      Object.keys(r.atividades||{}).map(function(k){return k+": "+(r.atividades[k].join(", ")||"–")}).join(" · ")+(r.outra?" · Outra: "+r.outra:""),
      r.dias.join(", "),r.periodos.join(", "),r.ip&&porIp[r.ip]>1?"Mesma de outras "+(porIp[r.ip]-1):"Única"].forEach(function(v){tr.appendChild(el("td",null,v||"–"))});
-    var td=el("td"),x=el("button","del","Apagar");x.title="Apagar esta resposta e liberar o apartamento para responder de novo";
+    if(admin){var td=el("td"),x=el("button","del","Apagar");x.title="Apagar esta resposta e liberar o apartamento para responder de novo";
     x.onclick=function(){if(!confirm("Apagar a resposta de "+(r.unidade||"sem apartamento")+"? Ela sai dos resultados."))return;
       fetch("/api/interesse/"+PESQUISA+"/respostas?id="+r.id,{method:"DELETE",headers:{authorization:"Bearer "+chave()}}).then(function(z){if(z.ok)carregar();else alert("Não foi possível apagar.")})};
-    td.appendChild(x);tr.appendChild(td);tb.appendChild(tr)});
+    td.appendChild(x);tr.appendChild(td)}tb.appendChild(tr)});
   t.appendChild(tb);w.appendChild(t);c2.appendChild(w)}
   app.appendChild(c2);
   document.getElementById("sub").textContent="Atualizado às "+new Date().toLocaleTimeString("pt-BR",{hour:"2-digit",minute:"2-digit"})+". Página interna, não compartilhe o link.";
@@ -112,7 +112,7 @@ function carregar(){
   var k=chave();if(!k)return pedirChave("Para ver os resultados, use o link com a chave de acesso.");
   fetch("/api/interesse/"+PESQUISA+"/respostas",{headers:{authorization:"Bearer "+k},cache:"no-store"})
   .then(function(r){if(r.status===401)throw"chave";if(!r.ok)throw"rede";return r.json()})
-  .then(function(d){render(d.respostas||[])})
+  .then(function(d){render(d.respostas||[],!!d.admin)})
   .catch(function(e){e==="chave"?pedirChave("Chave inválida. Confira o link."):(app.innerHTML="",app.appendChild(el("p","msg","Não foi possível carregar agora. Tente atualizar a página.")))});
 }
 carregar();
