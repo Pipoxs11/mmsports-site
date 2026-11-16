@@ -45,20 +45,15 @@ PESQUISAS = [
         ),
     },
     {
-        # Foco do síndico: hidroginástica 60+ e futsal infantil. Sem alongamento (pedido do Felipe, 11/11/2026).
+        # Formulário padronizado, igual ao do Solar dos Amigos (pedido do Felipe, 16/11/2026).
         "slug": "lavance-morumbi",
         "nome": "Lavance Morumbi",
         "faixas": faixas(
             ["Futsal/Futebol", "Judô", "Ballet e dança", "Ginástica e recreação"],
             ["Futsal/Futebol", "Vôlei", "Basquete", "Judô", "Dança", "Ginástica"],
-            ["Futsal/Futebol", "Vôlei", "Basquete", "Judô e lutas", "Danças e ritmos", "Funcional"],
-            ["Hidroginástica", "Pilates", "Funcional", "Danças e ritmos", "Vôlei", "Futsal/Futebol", "Judô e lutas"],
-            ["Hidroginástica", "Ginástica", "Pilates", "Danças e ritmos", "Vôlei adaptado"],
-            destaques={
-                "Crianças de 4 a 6 anos": ["Futsal/Futebol"],
-                "Crianças de 7 a 11 anos": ["Futsal/Futebol"],
-                "60 anos ou mais": ["Hidroginástica"],
-            },
+            ["Vôlei", "Futsal/Futebol", "Basquete", "Judô e lutas", "Danças e ritmos", "Funcional"],
+            ["Pilates", "Funcional", "Danças e ritmos", "Vôlei", "Futsal/Futebol", "Judô e lutas", "Alongamento", "Hidroginástica"],
+            ["Ginástica", "Hidroginástica", "Pilates", "Alongamento", "Danças e ritmos", "Vôlei adaptado"],
         ),
     },
     {
