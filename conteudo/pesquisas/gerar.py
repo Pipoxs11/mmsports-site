@@ -57,15 +57,16 @@ PESQUISAS = [
         ),
     },
     {
-        # Sem hidroginástica: não sabemos se o condomínio tem piscina.
+        # Formulário padrão, igual ao do Solar. Tem piscina, então inclui hidroginástica (Felipe, 16/11/2026).
         "slug": "lake-tahoe",
         "nome": "Lake Tahoe",
+        "versao": "lake-tahoe-hidro-1",
         "faixas": faixas(
             ["Futsal/Futebol", "Judô", "Ballet e dança", "Ginástica e recreação"],
             ["Futsal/Futebol", "Vôlei", "Basquete", "Judô", "Dança", "Ginástica"],
             ["Vôlei", "Futsal/Futebol", "Basquete", "Judô e lutas", "Danças e ritmos", "Funcional"],
-            ["Pilates", "Funcional", "Danças e ritmos", "Vôlei", "Futsal/Futebol", "Judô e lutas", "Alongamento"],
-            ["Ginástica", "Pilates", "Alongamento", "Danças e ritmos", "Vôlei adaptado"],
+            ["Pilates", "Funcional", "Danças e ritmos", "Vôlei", "Futsal/Futebol", "Judô e lutas", "Alongamento", "Hidroginástica"],
+            ["Ginástica", "Hidroginástica", "Pilates", "Alongamento", "Danças e ritmos", "Vôlei adaptado"],
         ),
     },
 ]
@@ -77,7 +78,7 @@ def main():
     res = (pasta / "modelo-resultados.html").read_text(encoding="utf-8")
     for p in PESQUISAS:
         js = json.dumps(p["faixas"], ensure_ascii=False, indent=None)
-        trocas = {"{{SLUG}}": p["slug"], "{{NOME}}": p["nome"], "{{VERSAO}}": VERSAO, "{{FAIXAS}}": js}
+        trocas = {"{{SLUG}}": p["slug"], "{{NOME}}": p["nome"], "{{VERSAO}}": p.get("versao", VERSAO), "{{FAIXAS}}": js}
         destino = RAIZ / "site" / p["slug"]
         destino.mkdir(parents=True, exist_ok=True)
         for modelo, nome in ((form, "index.html"), (res, "resultados.html")):
