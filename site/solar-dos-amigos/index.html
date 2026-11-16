@@ -138,12 +138,11 @@ input[type=text]:focus,input[type=tel]:focus{border-color:var(--blue);outline:no
   </section>
 
   <section data-step="4">
-    <h2>Quer ser avisado da aula experimental?</h2>
-    <p class="dica">Tudo opcional. Se preferir, é só tocar em Enviar.</p>
+    <h2>Para fechar: quem está respondendo?</h2>
+    <p class="dica">Precisamos do seu nome e do apartamento para organizar as turmas.</p>
     <label class="campo">Seu nome<input type="text" name="nome" maxlength="80" autocomplete="name"></label>
     <div class="dupla"><label class="campo">Bloco ou torre<input type="text" name="bloco" maxlength="20" autocapitalize="characters" placeholder="Ex.: B"></label>
     <label class="campo">Apartamento<input type="text" name="apto" maxlength="10" inputmode="numeric" placeholder="Ex.: 42"></label></div>
-    <label class="campo">WhatsApp<input type="tel" name="whatsapp" maxlength="30" autocomplete="tel" inputmode="tel" placeholder="(11) 90000-0000"></label>
     <p class="priv">Usamos seus dados só para organizar as turmas do Solar dos Amigos e falar sobre as aulas. <a href="/privacidade.html">Privacidade</a>.</p>
   </section>
 
@@ -241,13 +240,14 @@ function validar(n){
     if(falta&&!f.outra.value.trim())return"Escolha ao menos uma atividade para cada pessoa (ou escreva outra).";}
   if(n===3&&!marcados("dia").length)return"Marque ao menos um dia.";
   if(n===3&&!marcados("periodo").length)return"Marque ao menos um período.";
+  if(n===4&&(!f.nome.value.trim()||!f.bloco.value.trim()||!f.apto.value.trim()))return"Preencha seu nome, o bloco e o apartamento.";
   return"";
 }
 
 function dados(){
   var pessoas=Array.prototype.map.call(document.querySelectorAll(".grupo"),function(d){return{faixa:d.dataset.faixa,atividades:marcados("atv",d)}});
   return{pessoas:pessoas,outra:f.outra.value,dias:marcados("dia"),periodos:marcados("periodo"),
-    acesso:ACESSO,dispositivo:idDisp(),nome:f.nome.value,bloco:f.bloco.value,apto:f.apto.value,whatsapp:f.whatsapp.value,site:f.site.value};
+    acesso:ACESSO,dispositivo:idDisp(),nome:f.nome.value,bloco:f.bloco.value,apto:f.apto.value,site:f.site.value};
 }
 
 function textoWhats(d){

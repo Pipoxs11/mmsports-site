@@ -70,7 +70,6 @@ function limpar(d) {
     bloco: texto(d.bloco, 20),
     apto: texto(d.apto, 10),
     unidade: [texto(d.bloco, 20) && "Bloco " + texto(d.bloco, 20).replace(/^(bloco|torre)\s*/i, ""), texto(d.apto, 10) && "ap. " + texto(d.apto, 10)].filter(Boolean).join(", "),
-    whatsapp: texto(d.whatsapp, 30),
     dispositivo: /^[a-z0-9-]{8,40}$/i.test(d.dispositivo || "") ? d.dispositivo : "",
   };
 }
@@ -104,6 +103,7 @@ export default {
       if (d && d.site) return json({ ok: true }); // campo-isca contra robôs
       const r = limpar(d);
       if (!r.faixas.length) return json({ erro: "Escolha ao menos uma faixa etária." }, 400);
+      if (!r.nome || !r.bloco || !r.apto) return json({ erro: "Informe nome, bloco e apartamento." }, 400);
       // Uma resposta por aparelho (celular ou computador): cookie do servidor + id guardado no
       // navegador. Por IP não dá: redes móveis e o Wi-Fi do condomínio fazem
       // vários vizinhos aparecerem com o mesmo IP.
