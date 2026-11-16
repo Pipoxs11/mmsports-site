@@ -55,8 +55,13 @@ function limpar(d) {
       if (l.length) atividades[texto(faixa, 60)] = l;
     }
   }
+  // Formato novo: uma entrada por pessoa da casa (pode haver 2 crianças da mesma idade).
+  const pessoas = (Array.isArray(d.pessoas) ? d.pessoas : []).slice(0, 30)
+    .map((p) => ({ faixa: texto(p && p.faixa, 60), atividades: lista(p && p.atividades, 20, 60) }))
+    .filter((p) => p.faixa);
   return {
-    faixas: lista(d.faixas, 10, 60),
+    pessoas,
+    faixas: pessoas.length ? [...new Set(pessoas.map((p) => p.faixa))] : lista(d.faixas, 10, 60),
     atividades,
     outra: texto(d.outra, 200),
     dias: lista(d.dias, 7, 20),
