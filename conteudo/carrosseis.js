@@ -282,6 +282,69 @@ const CARROSSEIS = {
       'Com isso em mãos, a conversa sobre 2027 vira <b>dado, não opinião</b>.' ] },
     { tipo: 'fim', kicker: 'Resumo', titulo: 'O que não se mede não <em>melhora</em>.', sub: 'A MM Sports ajuda o condomínio a montar a grade de 2027 a partir do que funcionou neste ano.', cta: 'Fale com a gente: mmsports.me' },
   ],
+  'festival-de-fim-de-ano': [
+    { tipo: 'capa', kicker: 'Dezembro no condomínio', titulo: 'Festival esportivo de <em>fim de ano</em>', sub: 'Um guia para o síndico transformar a confraternização em uma manhã de esporte para todas as idades.' },
+    { tipo: 'texto', kicker: 'A ideia', titulo: 'Mais que uma <em>festa</em>', paragrafos: [
+      'Em vez de só um encontro no salão, uma manhã com <b>atividades para crianças, adultos e 60+</b>, na quadra e nas áreas comuns.',
+      'Os moradores se conhecem, as famílias participam juntas e a área de lazer mostra o que pode ser no ano seguinte.' ] },
+    { tipo: 'lista', kicker: 'Planejamento', titulo: 'Como <em>organizar</em>', itens: [
+      '<b>Data e horário:</b> manhã de sábado ou domingo, antes do sol forte.',
+      '<b>Atividades por idade:</b> circuito para os pequenos, jogos em equipe para os maiores, caminhada e alongamento para o 60+.',
+      '<b>Inscrição simples:</b> lista na portaria ou no app, com nome e idade.',
+      '<b>Comunicação:</b> aviso com duas semanas de antecedência.' ] },
+    { tipo: 'lista', kicker: 'Segurança e convivência', titulo: 'O que não pode <em>faltar</em>', itens: [
+      'Professor responsável por cada atividade',
+      'Água, sombra e pausas',
+      'Horário de término respeitando o regimento interno',
+      'Medalha ou lembrança para todos, sem ranking entre crianças' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'Uma manhã de esporte vale mais que um <em>discurso</em> na assembleia.', sub: 'A MM Sports organiza festivais esportivos conforme o espaço e o perfil de cada condomínio.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'calendario-2027': [
+    { tipo: 'capa', kicker: 'Planejamento', titulo: 'O ano da área de lazer, <em>mês a mês</em>', sub: 'Um calendário simples para o síndico planejar 2027 sem correria.' },
+    { tipo: 'modelo', kicker: 'Primeiro semestre', titulo: 'De janeiro a <em>junho</em>', cards: [
+      { selo: 'Janeiro', texto: 'Férias: atividades pela manhã e inscrições abertas para as turmas do ano.' },
+      { selo: 'Fevereiro e março', texto: 'Volta às aulas: turmas novas começam junto com a rotina da escola.' },
+      { selo: 'Abril a junho', texto: 'Ritmo de treino e primeira pesquisa rápida de satisfação com as famílias.' } ] },
+    { tipo: 'modelo', kicker: 'Segundo semestre', titulo: 'De julho a <em>dezembro</em>', cards: [
+      { selo: 'Julho', texto: 'Férias de inverno: atividades em área coberta e horários mais tarde.' },
+      { selo: 'Agosto a outubro', texto: 'Ajuste da grade: abrir turmas novas onde há procura.' },
+      { selo: 'Novembro e dezembro', texto: 'Balanço do ano, orçamento do ano seguinte e festival de encerramento.' } ] },
+    { tipo: 'lista', kicker: 'Para o síndico', titulo: 'Três datas para <em>anotar</em>', itens: [
+      '<b>Dezembro:</b> publicar a grade e abrir as inscrições de 2027.',
+      '<b>Junho:</b> ouvir as famílias e ajustar o segundo semestre.',
+      '<b>Novembro:</b> levar o balanço e a proposta do ano seguinte para a assembleia.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'Área de lazer com <em>calendário</em> não depende de improviso.', sub: 'A MM Sports monta o plano anual de atividades junto com o síndico.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'turma-60-mais': [
+    { tipo: 'capa', kicker: 'Cada idade', titulo: 'Por que todo condomínio deveria ter uma turma <em>60+</em>', sub: 'O morador que mais usa as áreas comuns durante o dia costuma ser o que tem menos atividade pensada para ele.' },
+    { tipo: 'texto', kicker: 'O cenário', titulo: 'Quem está em casa às <em>9h</em>', paragrafos: [
+      'Durante a semana, de manhã, a quadra e o salão costumam ficar vazios. É justamente o horário de quem já se aposentou.',
+      'Uma turma 60+ ocupa o espaço no horário ocioso e <b>não disputa com as aulas das crianças</b>.' ] },
+    { tipo: 'modelo', kicker: 'O que a aula trabalha', titulo: 'Mais <em>autonomia</em> no dia a dia', cards: [
+      { selo: 'Força', texto: 'Subir escada, carregar sacola e levantar da cadeira com mais facilidade.' },
+      { selo: 'Equilíbrio', texto: 'Mais segurança para andar e menos risco de queda.' },
+      { selo: 'Convivência', texto: 'Uma turma de vizinhos que se encontra toda semana.' } ] },
+    { tipo: 'lista', kicker: 'Como montar', titulo: 'O que dá <em>certo</em>', itens: [
+      '<b>Horário de manhã,</b> com espaço coberto.',
+      '<b>Atividades variadas:</b> ginástica, alongamento, dança, vôlei adaptado.',
+      '<b>Professor que adapta</b> o exercício a cada aluno, sem comparação entre a turma.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'Quadra vazia de manhã é turma <em>60+</em> esperando para começar.', sub: 'A MM Sports monta turmas 60+ conforme o espaço e o interesse dos moradores.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'aula-sem-barulho': [
+    { tipo: 'capa', kicker: 'Gestão da área de lazer', titulo: 'Aula no condomínio sem <em>reclamação</em> de barulho', sub: 'Como evitar que a atividade esportiva vire assunto de assembleia pelo motivo errado.' },
+    { tipo: 'texto', kicker: 'O ponto de partida', titulo: 'Barulho é questão de <em>combinado</em>', paragrafos: [
+      'Toda atividade faz algum barulho. O conflito aparece quando ele chega em <b>hora inesperada</b> ou sem aviso.',
+      'Horário claro, local certo e comunicação prévia resolvem a maior parte dos casos.' ] },
+    { tipo: 'lista', kicker: 'Horário e local', titulo: 'Onde e <em>quando</em>', itens: [
+      '<b>Respeitar o regimento interno</b> e o horário de silêncio do condomínio.',
+      '<b>Atividades com música</b> (ritmos, dança, funcional) em salão fechado ou longe das janelas.',
+      '<b>Jogos com bola</b> na quadra, com tela de proteção em bom estado.' ] },
+    { tipo: 'lista', kicker: 'Durante a aula', titulo: 'Cuidados do <em>professor</em>', inicio: 4, itens: [
+      '<b>Volume da música</b> combinado com o síndico antes da primeira aula.',
+      '<b>Apito e gritos</b> só quando necessário.',
+      '<b>Fim da aula no horário,</b> com a quadra liberada e o material guardado.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'Aula bem combinada não vira <em>reclamação</em>.', sub: 'A MM Sports define com o síndico os horários, os locais e as regras de cada atividade antes de começar.', cta: 'Fale com a gente: mmsports.me' },
+  ],
 };
 
 (async () => {
