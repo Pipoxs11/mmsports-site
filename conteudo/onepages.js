@@ -477,6 +477,87 @@ h1 em{font-style:normal;color:${C.laranja}}
 </div></div>
 <div class="p">Na foto, uma das nossas turmas de futsal com o professor Matheus.</div>
 `, logoCor),
+  // 20. Ilustração: férias escolares no condomínio (Instagram, 24/11/2026, divulga o artigo do blog)
+  '20-ferias-no-condominio': base(C.laranja, C.tinta, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:88px;line-height:.96;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.creme}}
+.il{display:flex;justify-content:center;margin-top:36px}
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px;padding:34px 80px 0}
+.c{background:${C.tinta};color:${C.creme};border-radius:22px;padding:24px 26px}
+.c b{display:block;font-size:30px;font-weight:800;line-height:1.1;color:${C.laranja}}
+.c span{display:block;font-size:24px;line-height:1.3;margin-top:6px}
+.blog{position:absolute;left:80px;right:80px;bottom:150px;font-size:30px;font-weight:800}
+</style>
+<div class="top"><div class="k" style="color:${C.tinta}">Férias escolares · Dezembro e janeiro</div>
+<h1>Férias no condomínio pedem <em>planejamento</em>.</h1></div>
+<div class="il"><svg width="920" height="300" viewBox="0 0 920 300">
+ <rect width="920" height="300" rx="32" fill="${C.creme}"/>
+ <g transform="translate(150 150)">${Array.from({ length: 12 }, (_, i) => `<rect x="-7" y="-118" width="14" height="38" rx="7" fill="${C.laranja}" transform="rotate(${i * 30})"/>`).join('')}<circle r="68" fill="${C.laranja}"/></g>
+ <rect x="300" y="214" width="580" height="14" rx="7" fill="${C.cobalto}" opacity=".25"/>
+ <rect x="320" y="126" width="130" height="80" rx="10" fill="none" stroke="${C.tinta}" stroke-width="8"/><line x1="385" y1="126" x2="385" y2="206" stroke="${C.tinta}" stroke-width="6"/><circle cx="385" cy="166" r="16" fill="none" stroke="${C.tinta}" stroke-width="6"/>
+ <circle cx="550" cy="176" r="30" fill="${C.cobalto}"/><path d="M520 176h60M550 146v60" stroke="${C.creme}" stroke-width="5"/>
+ <g fill="${C.tinta}"><circle cx="680" cy="92" r="20"/><rect x="666" y="118" width="28" height="60" rx="12"/><rect x="638" y="128" width="84" height="12" rx="6" transform="rotate(-20 680 134)"/><rect x="664" y="172" width="12" height="40" rx="6"/><rect x="684" y="172" width="12" height="40" rx="6"/></g>
+ <g fill="${C.tinta}"><path d="M810 80l30 22-12 34h-36l-12-34z"/><rect x="806" y="140" width="8" height="70" rx="4"/></g>
+</svg></div>
+<div class="cards">
+ <div class="c"><b>Levante a demanda</b><span>Quantas crianças ficam e em quais idades.</span></div>
+ <div class="c"><b>Defina horários</b><span>Atividades cedo, antes do sol forte.</span></div>
+ <div class="c"><b>Ajuste as regras</b><span>Quadra, piscina e salão no período.</span></div>
+ <div class="c"><b>Avise cedo</b><span>Antes de as famílias fecharem dezembro.</span></div>
+</div>
+<div class="blog">Guia completo no blog. Link na bio.</div>
+`, logoUma),
+
+  // 21. Só texto: Dia do Síndico, 30/11 (Instagram, 26/11/2026)
+  '21-dia-do-sindico': base(C.creme, C.tinta, `
+<style>
+.top{padding:96px 80px 0}
+.dt{font:800 150px/1 'Bricolage Grotesque';color:${C.cobalto};margin-top:24px}
+h1{font-size:84px;line-height:.98;font-weight:800;margin-top:18px}
+h1 em{font-style:normal;color:${C.laranja}}
+.p{padding:40px 80px 0;font-size:34px;line-height:1.38;font-weight:600}
+.lista{display:flex;flex-direction:column;gap:16px;padding:36px 80px 0}
+.it{display:flex;gap:20px;align-items:center;font-size:31px;font-weight:700}
+.it i{flex:none;width:44px;height:44px;border-radius:50%;background:${C.cobalto};position:relative}
+.it i:after{content:'';position:absolute;left:15px;top:8px;width:9px;height:19px;border:solid ${C.creme};border-width:0 6px 6px 0;transform:rotate(45deg)}
+</style>
+<div class="top"><div class="k" style="color:${C.laranja}">Dia do Síndico</div>
+<div class="dt">30/11</div>
+<h1>Obrigado a quem cuida do <em>condomínio</em>.</h1></div>
+<div class="p">Manutenção, contas, assembleias e convivência: é muita coisa. Nas aulas no condomínio, a parte do esporte fica com a gente.</div>
+<div class="lista">
+ <div class="it"><i></i>Professores experientes</div>
+ <div class="it"><i></i>Material e organização das aulas</div>
+ <div class="it"><i></i>Grade de horários e turmas por idade</div>
+</div>
+`, logoCor),
+
+  // 22. Foto real: cuidados com o calor para as crianças (Instagram, sábado 28/11/2026)
+  '22-calor-e-criancas': base(C.cobalto, C.creme, `
+<style>
+.top{padding:80px 80px 0}
+h1{font-size:82px;line-height:.97;font-weight:800;margin-top:22px}
+h1 em{font-style:normal;color:${C.laranja}}
+.fw{padding:40px 80px 0}
+.lista{display:grid;grid-template-columns:1fr 1fr;gap:16px 30px;padding:34px 80px 0}
+.it{display:flex;gap:16px;align-items:flex-start}
+.it b{flex:none;width:46px;height:46px;border-radius:50%;background:${C.laranja};color:${C.tinta};font:800 26px 'Bricolage Grotesque';display:flex;align-items:center;justify-content:center}
+.it span{font-size:27px;line-height:1.25;font-weight:700;padding-top:6px}
+.p{position:absolute;left:80px;right:80px;bottom:150px;font-size:26px;font-weight:600;color:${C.nevoa}}
+</style>
+<div class="top"><div class="k" style="color:${C.laranja}">Verão no condomínio</div>
+<h1>Calor chegou: brincar ao ar livre com <em>cuidado</em>.</h1></div>
+<div class="fw">${box(foto('futebol-infantil/futebol-4a7-turma-pequenos-panoramica.jpg'), 400)}</div>
+<div class="lista">
+ <div class="it"><b>1</b><span>Prefira o começo da manhã e o fim da tarde</span></div>
+ <div class="it"><b>2</b><span>Água por perto e pausas frequentes</span></div>
+ <div class="it"><b>3</b><span>Protetor solar, boné e roupa leve</span></div>
+ <div class="it"><b>4</b><span>Sombra ou área coberta para descansar</span></div>
+</div>
+<div class="p">Na foto, a turma dos pequenos com o professor Matheus.</div>
+`, logoNeg),
 };
 
 (async () => {

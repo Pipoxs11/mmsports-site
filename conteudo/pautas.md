@@ -15,6 +15,7 @@ Registre cada conteúdo aqui (data, canal, tema, palavra-chave) para não repeti
 - 2026-11-02: Atividade física para idosos no condomínio (OMS, modalidades 60+, segurança, como montar a turma). Palavra-chave: "atividade física para idosos no condomínio".
 - 2026-11-09: Esporte para adolescentes no condomínio (benefícios, atividades de 12 a 17 anos, motivação, como montar a turma). Palavra-chave: "esporte para adolescentes no condomínio".
 - 2026-11-16: Previsão orçamentária do condomínio para 2027 (como incluir as aulas, modelos, demanda, o que levar à assembleia). Palavra-chave: "previsão orçamentária do condomínio".
+- 2026-11-23: Férias escolares no condomínio (o que planejar em novembro, atividades de verão, cuidados com o calor e segurança). Palavra-chave: "férias escolares no condomínio".
 
 ## Redes sociais
 - 2026-10-25 (Instagram): carrossel de apresentação refeito (fotos inteiras, sem cortar as crianças) e legenda focada em esportes coletivos, lutas, danças e ginástica.
@@ -29,3 +30,6 @@ Registre cada conteúdo aqui (data, canal, tema, palavra-chave) para não repeti
 - 2026-11-17 (Instagram): divulga o artigo da previsão orçamentária de 2027. Onepage com ilustração: 17-planejamento-2027 (calendário).
 - 2026-11-19 (Instagram): Novembro Azul, saúde do homem e atividade física para adultos e 60+. Onepage só texto: 18-novembro-azul.
 - 2026-11-21 (Instagram, sábado 9h): 4 brincadeiras em família na área comum. Onepage com foto real: 19-fim-de-semana-em-familia (futsal 5 a 8, quadra de madeira, vertical).
+- 2026-11-24 (Instagram): divulga o artigo de férias escolares no condomínio. Onepage com ilustração: 20-ferias-no-condominio (sol e brinquedos de verão).
+- 2026-11-26 (Instagram): Dia do Síndico (30/11), agradecimento e o que a MM Sports assume nas aulas. Onepage só texto: 21-dia-do-sindico.
+- 2026-11-28 (Instagram, sábado 9h): cuidados com o calor para as crianças brincarem ao ar livre. Onepage com foto real: 22-calor-e-criancas (futebol 4 a 7, campo aberto, panorâmica).
