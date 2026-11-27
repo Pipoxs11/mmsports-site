@@ -345,6 +345,39 @@ const CARROSSEIS = {
       '<b>Fim da aula no horário,</b> com a quadra liberada e o material guardado.' ] },
     { tipo: 'fim', kicker: 'Resumo', titulo: 'Aula bem combinada não vira <em>reclamação</em>.', sub: 'A MM Sports define com o síndico os horários, os locais e as regras de cada atividade antes de começar.', cta: 'Fale com a gente: mmsports.me' },
   ],
+  'turma-de-adultos': [
+    { tipo: 'capa', kicker: 'Cada idade', titulo: 'A turma que falta no condomínio: <em>adultos</em>', sub: 'Quem leva o filho para a aula também precisa de um horário para se mexer.' },
+    { tipo: 'texto', kicker: 'O ponto de partida', titulo: 'O adulto fica na <em>beira</em> da quadra', paragrafos: [
+      'Na maioria dos condomínios, a grade de aulas pensa nas crianças. Os pais <b>esperam do lado de fora</b>, olhando o celular.',
+      'A OMS recomenda de <b>150 a 300 minutos</b> de atividade física por semana para adultos. O que falta quase nunca é vontade: é horário e lugar perto de casa.' ] },
+    { tipo: 'modelo', kicker: 'Opções que funcionam', titulo: 'Três formatos para <em>adultos</em>', cards: [
+      { selo: 'Antes do trabalho', texto: 'Funcional, pilates ou alongamento logo cedo, com turma pequena.' },
+      { selo: 'Depois do expediente', texto: 'Lutas, ritmos ou vôlei, quando o dia já terminou.' },
+      { selo: 'Fim de semana', texto: 'Futsal, vôlei ou basquete com professor, regra e rodízio de times.' } ] },
+    { tipo: 'lista', kicker: 'Na prática', titulo: 'O que faz a turma <em>durar</em>', itens: [
+      '<b>Horário fixo</b> pensado para quem trabalha.',
+      '<b>Aula adaptada</b> para quem está parado há anos.',
+      '<b>Turma de vizinhos:</b> quem falta faz falta, e isso traz de volta.',
+      '<b>Variedade</b> conforme o interesse dos moradores.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'Condomínio com aula para os pais é condomínio com <em>família</em> em movimento.', sub: 'A MM Sports monta a grade conforme a procura dos moradores, de crianças a adultos e 60+.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+  'inscricoes-2027': [
+    { tipo: 'capa', kicker: 'Gestão da área de lazer', titulo: 'Fevereiro começa em <em>dezembro</em>', sub: 'Como abrir as inscrições das turmas de 2027 sem correria na volta às aulas.' },
+    { tipo: 'texto', kicker: 'Por que agora', titulo: 'Quem decide em dezembro, <em>começa</em> em fevereiro', paragrafos: [
+      'Em fevereiro, as famílias voltam com a agenda cheia: escola, curso, transporte. Quem já tem a aula do condomínio na rotina <b>não precisa escolher depois</b>.',
+      'Abrir as inscrições antes das férias dá tempo para montar as turmas certas.' ] },
+    { tipo: 'lista', kicker: 'Passo a passo', titulo: 'Como abrir as <em>inscrições</em>', itens: [
+      '<b>Pesquisa rápida</b> com os moradores: idades, atividades e horários preferidos.',
+      '<b>Grade publicada</b> no grupo e no mural ainda em dezembro.',
+      '<b>Inscrição simples,</b> direto com quem dá a aula, sem passar pela administração.',
+      '<b>Data de início</b> combinada para a primeira semana de fevereiro.' ] },
+    { tipo: 'lista', kicker: 'Para não errar', titulo: 'Três <em>cuidados</em>', inicio: 5, itens: [
+      '<b>Não deixar para o fim de janeiro:</b> muitas famílias ainda estão viajando.',
+      '<b>Turmas por idade</b> desde o início, sem misturar faixas.',
+      '<b>Aula experimental</b> na primeira semana para quem ainda está em dúvida.' ] },
+    { tipo: 'fim', kicker: 'Resumo', titulo: 'Turma planejada em dezembro começa <em>cheia</em> em fevereiro.', sub: 'A MM Sports cuida da pesquisa, da grade e das inscrições com as famílias.', cta: 'Fale com a gente: mmsports.me' },
+  ],
+
 };
 
 (async () => {
